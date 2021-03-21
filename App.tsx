@@ -13,7 +13,7 @@ const App = () => {
     <>
       <SafeAreaProvider>
         <ThemeProvider theme={colors}>
-            <AppConnected />
+          <AppConnected />
         </ThemeProvider>
         <ToastConfig />
       </SafeAreaProvider>

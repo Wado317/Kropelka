@@ -11,6 +11,7 @@ import HomeScreen from './src/screens/HomeScreen/HomeScreen'
 import IntroScreen from './src/screens/IntroScreen/IntroScreen'
 import LoginScreen from './src/screens/LoginScreen/LoginScreen'
 import RegisterScreen from './src/screens/RegisterScreen/RegisterScreen'
+import RegisterInfoScreen from './src/screens/RegisterScreen/RegisterInfoScreen'
 
 import { StatusBar } from 'react-native';
 
@@ -42,6 +43,11 @@ const LoginStack = () => {
         <AppStack.Screen
           component={RegisterScreen}
           name={Routes.RegisterScreen}
+          options={{ headerShown: false }}
+        />
+        <AppStack.Screen
+          component={RegisterInfoScreen}
+          name={Routes.RegisterInfoScreen}
           options={{ headerShown: false }}
         />
       </AppStack.Navigator>

@@ -22,7 +22,7 @@ const Logo = styled.Image`
 
 const BottomImage = styled.Image`
   position: absolute;
-  width: ${screenWidth};
+  width: ${screenWidth}px;
   bottom: 0;
 `;
 
