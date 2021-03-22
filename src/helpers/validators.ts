@@ -8,7 +8,7 @@ export default class TextValidator {
 
   static isCorrectPassword = (val: string): boolean => {
     const passwordRegex = new RegExp(
-      /(?=.*(\d|[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]))(?=.*[a-z])(?=.*[A-Z])/,
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])/,
     );
     return val?.length >= 6 && passwordRegex.test(String(val));
   };

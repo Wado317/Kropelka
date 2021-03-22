@@ -1,12 +1,13 @@
-import React, { useState, useCallback } from 'react'
-import { Dimensions, TouchableWithoutFeedback, Keyboard } from 'react-native'
-import { colors } from '../../const/colors'
+import React, { useState, useCallback } from 'react';
+import { Dimensions } from 'react-native';
+import { colors } from '../../const/colors';
 import { useNavigation } from '@react-navigation/native';
 import styled from 'styled-components/native';
 import { Routes } from '../../const/routes';
-import { RoundButton } from '../../components/Button/Button'
-import { UniversalRedInput } from '../../components/UniversalInput/UniversalRedInput'
+import { RoundButton } from '../../components/Button/Button';
+import { UniversalRedInput } from '../../components/UniversalInput/UniversalRedInput';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
+import TextValidator from '../../helpers/validators'
 
 const { height: screenHeight } = Dimensions.get('window');
 
@@ -56,10 +57,21 @@ const ButtonContainer = styled.View`
   margin-top: 80px;
 `;
 
+const ValidationInfo = styled.Text`
+  color: ${colors.black};
+  font-family: 'Rajdhani';
+  font-size: 16px;
+  margin-horizontal: 35px;
+`;
+
 const RegisterScreen = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [password2, setPassword2] = useState<string>('');
+  const [emailError, setEmailError] = useState<string>('');
+  const [passwordError, setPasswordError] = useState<string>('');
+  const [password2Error, setPassword2Error] = useState<string>('');
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const navigation = useNavigation();
 
@@ -73,6 +85,34 @@ const RegisterScreen = () => {
     },
     [],
   );
+
+  const validate = useCallback((): boolean => {
+    let isValid = true;
+
+    if (!TextValidator.isEmail(email)) {
+      setEmailError('Błędny adres email');
+      isValid = false;
+    } else {
+      setEmailError('');
+    }
+
+    if (!TextValidator.isCorrectPassword(password)) {
+      isValid = false;
+      setPasswordError('Wymagane 6 znaków, wielka litera oraz cyfra.');
+    } else {
+      passwordError && setPasswordError('');
+    }
+
+    if (password !== password2) {
+      setPassword2Error('Błędnie powtórzone hasło.');
+      isValid = false;
+    } else {
+      setPassword2Error('');
+    }
+
+    setIsFormValid(isValid);
+    return isValid;
+  }, [email, password, password2]);
 
   const handleRegister = async () => {
 
@@ -96,29 +136,35 @@ const RegisterScreen = () => {
           <UniversalRedInput 
             label={'Adres email'}
             secure={false}
-            value={inputHandler(email)}
+            value={email}
+            onChangeText={inputHandler(setEmail)}
             // REF!! przeskoki miedzy inputami, przed funkcja focus "?" wrazie wywalenia sie refa (ominiecie crash-a apki)
             placeholder={'Wpisz email...'}
             placeholderTextColor={colors.darkGrey}
           />
+          <ValidationInfo>{emailError}</ValidationInfo>
           <UniversalRedInput 
             label={'Hasło'}
             secure={true}
-            value={inputHandler(password)}
+            value={password}
+            onChangeText={inputHandler(setPassword)}
             placeholder={'Wpisz hasło...'}
             placeholderTextColor={colors.darkGrey}
           />
+          <ValidationInfo>{passwordError}</ValidationInfo>
           <UniversalRedInput 
             label={'Powtórz hasło'}
             secure={true}
-            value={inputHandler(password2)}
+            value={password2}
+            onChangeText={inputHandler(setPassword2)}
             placeholder={'Wpisz hasło...'}
             placeholderTextColor={colors.darkGrey}
           />
+          <ValidationInfo>{password2Error}</ValidationInfo>
           <ButtonContainer>
             <RoundButton 
               label={'Przejdź dalej'}
-              onPress={goToRegisterInfoScreenScreen}
+              onPress={validate}
               background={colors.red}
               textColor={colors.white}
               border={colors.white}

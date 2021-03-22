@@ -71,7 +71,8 @@ const ButtonContainer = styled.View`
 `;
 
 const RegisterInfoScreen = () => {
-  const [selectedSex, setSelectedSex] = useState('');
+  const [selectedSex, setSelectedSex] = useState<string>('');
+  const [name, setName] = useState<string>('');
 
   const navigation = useNavigation();
 
@@ -102,7 +103,8 @@ const RegisterInfoScreen = () => {
             <UniversalRedInput 
               label={'Twoje imie'}
               secure={false}
-              value={console.log('hey')}
+              value={name}
+              onChangeText={inputHandler(setName)}
               placeholder={'Wpisz imie...'}
               placeholderTextColor={colors.darkGrey}
             />
