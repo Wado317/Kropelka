@@ -7,7 +7,8 @@ import { Routes } from '../../const/routes';
 import { RoundButton } from '../../components/Button/Button';
 import { UniversalRedInput } from '../../components/UniversalInput/UniversalRedInput';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
-import TextValidator from '../../helpers/validators'
+import TextValidator from '../../helpers/validators';
+import FirebaseAuthService from '../../services/FirebaseAuthService'
 
 const { height: screenHeight } = Dimensions.get('window');
 
@@ -54,7 +55,7 @@ const Container = styled.View`
 `;
 
 const ButtonContainer = styled.View`
-  margin-top: 80px;
+  margin-top: 60px;
 `;
 
 const ValidationInfo = styled.Text`
@@ -62,6 +63,7 @@ const ValidationInfo = styled.Text`
   font-family: 'Rajdhani';
   font-size: 16px;
   margin-horizontal: 35px;
+  margin-vertical: 5px;
 `;
 
 const RegisterScreen = () => {
@@ -78,7 +80,8 @@ const RegisterScreen = () => {
   const goToRegisterInfoScreenScreen = () => {
     navigation.navigate(Routes.RegisterInfoScreen)
   };
-
+// przeskok miedzy inputami "return-em"
+// dodanie loader-a na isLoading
   const inputHandler = useCallback(
     (handler: any) => (value: string): void => {
       handler(value);
@@ -116,14 +119,20 @@ const RegisterScreen = () => {
 
   const handleRegister = async () => {
 
-    if (!validate()) {
-      return;
-    }
+    // if (!validate()) {
+    //   return;
+    // }
+    try {
+      await FirebaseAuthService.signUpWithEmailAndPassword( email, password )
+    } catch (error) {
+// powiadomienia o 'bledach' lub 'sukcesach'
+// wylaczac automatyczna wielka litere
+    };
   };
 
   return (
     <Screen>  
-      <KeyboardAwareScrollView style= {{ width: '100%', height: 100,}}>
+      <KeyboardAwareScrollView style= {{ width: '100%', height: 100 }}>
         <TopBar>
           <Logo
             source={require('../../components/kropelka/kropelka.png')}
@@ -164,7 +173,7 @@ const RegisterScreen = () => {
           <ButtonContainer>
             <RoundButton 
               label={'Przejdź dalej'}
-              onPress={validate}
+              onPress={handleRegister}
               background={colors.red}
               textColor={colors.white}
               border={colors.white}

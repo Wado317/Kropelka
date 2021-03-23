@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import { colors } from '../../const/colors'
 import { useNavigation } from '@react-navigation/native';
 import styled from 'styled-components/native';
@@ -6,6 +6,7 @@ import { Routes } from '../../const/routes';
 import { RoundButton } from '../../components/Button/Button';
 import { UniversalInput } from '../../components/UniversalInput/UniversalInput';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
+import TextValidator from '../../helpers/validators';
 
 const Screen = styled.SafeAreaView`
   flex: 1;
@@ -67,20 +68,42 @@ const ButtonContainer = styled.View`
   margin-top: 55px;
 `;
 
+const ValidationInfo = styled.Text`
+  color: ${colors.white};
+  font-family: 'Rajdhani';
+  font-size: 16px;
+  margin-horizontal: 35px;
+  margin-vertical: 5px;
+`;
+
 const LoginScreen = () => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [emailError, setEmailError] = useState<string>('');
+
   const navigation = useNavigation();
 
   const goToLoggedInStackScreen = () => {
     navigation.navigate(Routes.LoggedInStack)
   };
 
-  const handleUserValue = (value) => {
-    console.log(value);
-  };
+  const inputHandler = useCallback(
+    (handler: any) => (value: string): void => {
+      handler(value);
+    },
+    [],
+  );
+// niepoprawny adres email i/lub haslo
+// react-native-vibration do walidacji!!
+  const validate = useCallback((): boolean => {
 
-  const handlePasswordValue = (value) => {
-    console.log(value);
-  };
+    if (!TextValidator.isEmail(email)) {
+      setEmailError('Niepoprawny adres email');
+    } else {
+      setEmailError('');
+    }
+    return ;
+  }, [email, password ]);
 
   return (
     <Screen>
@@ -95,23 +118,26 @@ const LoginScreen = () => {
       </TopBar>
       <Container>
         <UniversalInput 
-          label={'Nazwa użytkownika'}
+          label={'Adres email'}
           secure={false}
-          value={handleUserValue}
+          value={email}
+          onChangeText={inputHandler(setEmail)}
           placeholder={'Wpisz nazwę...'}
           placeholderTextColor={colors.lightGrey}
         />
+        <ValidationInfo>{emailError}</ValidationInfo>
         <UniversalInput 
           label={'Hasło'}
           secure={true}
-          value={handlePasswordValue}
+          value={password}
+          onChangeText={inputHandler(setPassword)}
           placeholder={'Wpisz hasło...'}
           placeholderTextColor={colors.lightGrey}
         />
         <ButtonContainer>
           <RoundButton 
             label={'Zaloguj się'}
-            onPress={goToLoggedInStackScreen}
+            onPress={validate}
             background={colors.white}
             textColor={colors.red}
             border={colors.white}
