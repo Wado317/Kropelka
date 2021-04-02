@@ -35,6 +35,7 @@ export const UniversalInput = ({ label, secure, value, placeholder, placeholderT
        placeholder={placeholder}
        placeholderTextColor={placeholderTextColor}
        onChangeText={onChangeText}
+       autoCapitalize="none"
       />
       <InputBottom 
         source={require('../../../assets/images/Input.png')}

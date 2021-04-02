@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from 'react';
-import { Dimensions } from 'react-native';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
+import { Dimensions, Vibration, TextInput } from 'react-native';
 import { colors } from '../../const/colors';
 import { useNavigation } from '@react-navigation/native';
 import styled from 'styled-components/native';
@@ -8,7 +8,9 @@ import { RoundButton } from '../../components/Button/Button';
 import { UniversalRedInput } from '../../components/UniversalInput/UniversalRedInput';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import TextValidator from '../../helpers/validators';
-import FirebaseAuthService from '../../services/FirebaseAuthService'
+import FirebaseAuthService from '../../services/FirebaseAuthService';
+import Toast from 'react-native-toast-message';
+import BackButton from '../../components/BackButton/BackButton'
 
 const { height: screenHeight } = Dimensions.get('window');
 
@@ -77,10 +79,13 @@ const RegisterScreen = () => {
 
   const navigation = useNavigation();
 
+  const ref_input1 = useRef();
+  const ref_input2 = useRef();
+  const ref_input3 = useRef();
+
   const goToRegisterInfoScreenScreen = () => {
     navigation.navigate(Routes.RegisterInfoScreen)
   };
-// przeskok miedzy inputami "return-em"
 // dodanie loader-a na isLoading
   const inputHandler = useCallback(
     (handler: any) => (value: string): void => {
@@ -95,6 +100,7 @@ const RegisterScreen = () => {
     if (!TextValidator.isEmail(email)) {
       setEmailError('Błędny adres email');
       isValid = false;
+      Vibration.vibrate()
     } else {
       setEmailError('');
     }
@@ -118,15 +124,18 @@ const RegisterScreen = () => {
   }, [email, password, password2]);
 
   const handleRegister = async () => {
-
-    // if (!validate()) {
-    //   return;
-    // }
+    if (!validate()) {
+      return;
+    }
     try {
       await FirebaseAuthService.signUpWithEmailAndPassword( email, password )
+      Toast.show({
+        type: 'success',
+        text1: 'Udało się!',
+        text2: 'Twoje konto zostało utworzone!',
+        topOffset: 50,
+      });
     } catch (error) {
-// powiadomienia o 'bledach' lub 'sukcesach'
-// wylaczac automatyczna wielka litere
     };
   };
 
@@ -134,6 +143,7 @@ const RegisterScreen = () => {
     <Screen>  
       <KeyboardAwareScrollView style= {{ width: '100%', height: 100 }}>
         <TopBar>
+          <BackButton />
           <Logo
             source={require('../../components/kropelka/kropelka.png')}
           />
@@ -148,9 +158,12 @@ const RegisterScreen = () => {
             value={email}
             onChangeText={inputHandler(setEmail)}
             // REF!! przeskoki miedzy inputami, przed funkcja focus "?" wrazie wywalenia sie refa (ominiecie crash-a apki)
+            // inputy bez styled components
+            // animacja oddanej krwii
+            
             placeholder={'Wpisz email...'}
             placeholderTextColor={colors.darkGrey}
-          />
+            />
           <ValidationInfo>{emailError}</ValidationInfo>
           <UniversalRedInput 
             label={'Hasło'}
@@ -159,7 +172,7 @@ const RegisterScreen = () => {
             onChangeText={inputHandler(setPassword)}
             placeholder={'Wpisz hasło...'}
             placeholderTextColor={colors.darkGrey}
-          />
+            />
           <ValidationInfo>{passwordError}</ValidationInfo>
           <UniversalRedInput 
             label={'Powtórz hasło'}
@@ -168,7 +181,7 @@ const RegisterScreen = () => {
             onChangeText={inputHandler(setPassword2)}
             placeholder={'Wpisz hasło...'}
             placeholderTextColor={colors.darkGrey}
-          />
+            />
           <ValidationInfo>{password2Error}</ValidationInfo>
           <ButtonContainer>
             <RoundButton 

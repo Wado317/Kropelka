@@ -7,6 +7,7 @@ import { RoundButton } from '../../components/Button/Button';
 import { UniversalInput } from '../../components/UniversalInput/UniversalInput';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import TextValidator from '../../helpers/validators';
+import BackButton from '../../components/BackButton/BackButton'
 
 const Screen = styled.SafeAreaView`
   flex: 1;
@@ -94,7 +95,8 @@ const LoginScreen = () => {
     [],
   );
 // niepoprawny adres email i/lub haslo
-// react-native-vibration do walidacji!!
+//      Vibration.vibrate()
+
   const validate = useCallback((): boolean => {
 
     if (!TextValidator.isEmail(email)) {
@@ -109,6 +111,7 @@ const LoginScreen = () => {
     <Screen>
       <KeyboardAwareScrollView style={{ flex: 1, height: 100, width: '100%'}}> 
       <TopBar>
+        <BackButton />
         <Logo
           source={require('../../components/kropelka/kropelka.png')}
         />
