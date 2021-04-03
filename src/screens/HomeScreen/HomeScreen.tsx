@@ -12,7 +12,7 @@ const HomeScreen = () => {
 
   const goToIntroScreen = () => {
     setTimeout(function(){
-      navigation.navigate(Routes.IntroScreen);
+      navigation.navigate(Routes.RaportsScreen);
     }, 4000);
   }
   const fadeAnim = useRef(new Animated.Value(0)).current;
