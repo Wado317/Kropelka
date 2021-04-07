@@ -1,10 +1,9 @@
 import React, {useState} from 'react'
-import View from 'react-native'
 import { colors } from '../../const/colors'
 import { useNavigation } from '@react-navigation/native';
 import styled from 'styled-components/native';
 import { Routes } from '../../const/routes';
-import { data } from '../../helpers/data'
+import { data } from '../../helpers/data';
 
 
 const Screen = styled.SafeAreaView`
