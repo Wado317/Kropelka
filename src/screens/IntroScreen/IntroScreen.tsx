@@ -59,49 +59,49 @@ const ButtonsContainer = styled.View`
 const IntroScreen = () => {
   const navigation = useNavigation();
 
-const goToLoginScreen = () => {
-  navigation.navigate(Routes.LoginScreen);
-};
+  const goToLoginScreen = () => {
+    navigation.navigate(Routes.LoginScreen);
+  };
 
-const goToRegisterScreen = () => {
-  navigation.navigate(Routes.RegisterScreen);
-};
+  const goToRegisterScreen = () => {
+    navigation.navigate(Routes.RegisterScreen);
+  };
 
-return (
-  <Screen>  
-    <Main>
-      <Logo
-        source={require('../../components/kropelka/kropelka.png')}
+  return (
+    <Screen>  
+      <Main>
+        <Logo
+          source={require('../../components/kropelka/kropelka.png')}
+        />
+        <Header>
+          <Title>
+            Cześć!
+          </Title>
+          <Welcoming>
+            Kropelka jest aplikacją stworzoną dla honorowych dawców krwii w Krakowie. Jesteś już z nami, czy dopiero dołączasz do grona bohaterów?
+          </Welcoming>
+        </Header>
+      </Main>
+      <ButtonsContainer>
+        <RoundButton 
+          label={'Załóż konto'}
+          onPress={goToRegisterScreen}
+          background={colors.white}
+          textColor={colors.red}
+          border={colors.red}
+        />
+        <RoundButton 
+          label={'Zaloguj się'}
+          onPress={goToLoginScreen}
+          background={colors.red}
+          textColor={colors.white}
+          border={colors.red}
+        />
+      </ButtonsContainer>
+      <BottomImage
+        source={require('../../../assets/images/Bottom.png')}
       />
-      <Header>
-        <Title>
-          Cześć!
-        </Title>
-        <Welcoming>
-          Kropelka jest aplikacją stworzoną dla honorowych dawców krwii w Krakowie. Jesteś już z nami, czy dopiero dołączasz do grona bohaterów?
-        </Welcoming>
-      </Header>
-    </Main>
-    <ButtonsContainer>
-      <RoundButton 
-        label={'Załóż konto'}
-        onPress={goToRegisterScreen}
-        background={colors.white}
-        textColor={colors.red}
-        border={colors.red}
-      />
-      <RoundButton 
-        label={'Zaloguj się'}
-        onPress={goToLoginScreen}
-        background={colors.red}
-        textColor={colors.white}
-        border={colors.red}
-      />
-    </ButtonsContainer>
-    <BottomImage
-      source={require('../../../assets/images/Bottom.png')}
-    />
-  </Screen>
+    </Screen>
   )
 }
 

@@ -13,6 +13,7 @@ import LoginScreen from './src/screens/LoginScreen/LoginScreen'
 import RegisterScreen from './src/screens/RegisterScreen/RegisterScreen'
 import RegisterInfoScreen from './src/screens/RegisterScreen/RegisterInfoScreen'
 import RaportsScreen from './src/screens/RaportsScreen/RaportsScreen'
+import LoggedInStack from './src/screens/LoggedInStack/LoggedInstack'
 
 import { StatusBar } from 'react-native';
 
@@ -75,6 +76,11 @@ const AppConnected = () => {
           name={Routes.LoginStack}
           options={{ headerShown: false }}
         />
+        <AppStack.Screen
+          component={LoggedInStack}
+          name={Routes.LoggedInStack}
+          options={{ headerShown: false }}
+        />        
       </AppStack.Navigator>
     </NavigationContainer>
   );
