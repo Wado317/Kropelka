@@ -15,7 +15,7 @@ const Screen = styled.SafeAreaView`
 const Logo = styled.Image`
   width: 110px;
   height: 110px;
-  margin-top: 30px;
+  margin-top: 18px;
 `;
 
 const Header = styled.Text`

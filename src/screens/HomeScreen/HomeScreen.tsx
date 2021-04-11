@@ -21,7 +21,7 @@ const HomeScreen = () => {
     Animated.timing(fadeAnim, {
       delay: 1000,
       toValue: 1,
-      duration: 2000
+      duration: 2000      
     }).start();
   };
   fadeIn();
