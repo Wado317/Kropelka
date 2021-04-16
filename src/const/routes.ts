@@ -9,7 +9,7 @@ export enum Routes {
   ForgotPassScreen = 'ForgotPassScreen',
   UserScreen = 'UserScreen',
   AccSettingsScreen = 'AccSettingsScreen',
-  ChangePassScreen = 'ChangePassScreen',
+  ChangePasswordScreen = 'ChangePasswordScreen',
   RaportsScreen = 'RaportsScreen',
   MainScreen = 'MainScreen'
 }

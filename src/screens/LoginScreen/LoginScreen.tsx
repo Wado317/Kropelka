@@ -140,7 +140,7 @@ const LoginScreen = () => {
         <ButtonContainer>
           <RoundButton 
             label={'Zaloguj się'}
-            onPress={validate}
+            onPress={goToLoggedInStackScreen}
             background={colors.white}
             textColor={colors.red}
             border={colors.white}

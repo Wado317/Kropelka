@@ -40,7 +40,10 @@ const TabBar = ({
   state,
   descriptors,
   navigation,
+  tabBarLabel,
 }: BottomTabBarProps) => {
+  console.warn(tabBarLabel);
+  
   const focusedOptions = descriptors[state.routes[state.index].key].options;
 
   if (focusedOptions.tabBarVisible === false) {
@@ -74,7 +77,7 @@ const TabBar = ({
             testID={options.tabBarTestID}
             onPress={onPress}
           >
-            <Raport />
+
           </Tab>
           );
         })}

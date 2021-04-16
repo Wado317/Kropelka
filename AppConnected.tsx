@@ -14,6 +14,7 @@ import RegisterScreen from './src/screens/RegisterScreen/RegisterScreen'
 import RegisterInfoScreen from './src/screens/RegisterScreen/RegisterInfoScreen'
 import RaportsScreen from './src/screens/RaportsScreen/RaportsScreen'
 import LoggedInStack from './src/screens/LoggedInStack/LoggedInstack'
+import ChangePasswordScreen from './src/screens/ChangePasswordScreen/ChangePasswordScreen'
 
 import { StatusBar } from 'react-native';
 
@@ -79,8 +80,16 @@ const AppConnected = () => {
         <AppStack.Screen
           component={LoggedInStack}
           name={Routes.LoggedInStack}
+          options={{ 
+            headerShown: false,
+            gestureEnabled: false
+          }}
+        />   
+        <AppStack.Screen
+          component={ChangePasswordScreen}
+          name={Routes.ChangePasswordScreen}
           options={{ headerShown: false }}
-        />        
+        />   
       </AppStack.Navigator>
     </NavigationContainer>
   );

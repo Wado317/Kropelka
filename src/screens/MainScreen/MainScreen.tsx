@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import * as Progress from 'react-native-progress';
 import styled from 'styled-components/native';
 import { colors } from '../../const/colors';
 import Plus from '../../components/Icons/Plus'
 import BloodDropsCarousel from '../../components/BloodDropsCarousel/BloodDropsCarousel'
+import { Animated, StyleSheet, Text } from 'react-native';
+import { CountUp } from 'use-count-up';
+import DonationModal from '../../components/Modals/DonationModal/DonationModal'
 
 const SafeAreaContainer = styled.SafeAreaView`
   flex: 1;
@@ -18,6 +21,7 @@ const Container = styled.View`
   margin-horizontal: 50px;
   margin-top: 100px;
   flex-direction: row;
+  padding-horizontal: 15px;
 `;
 
 const Logo = styled.Image`
@@ -33,12 +37,6 @@ const BloodCounter = styled.Text`
   font-size: 65px;
   color: ${colors.red};
   padding-vertical: 15px;
-  `;
-  
-const PlusContainer = styled.View`
-  padding-top: 15px;
-  padding-bottom: 15px;
-  padding-left: 10px;
 `;
 
 const InviteContainer = styled.View`
@@ -85,14 +83,6 @@ const StorageDate = styled.Text`
   font-size: 15px;
 `;
 
-const Thanks = styled.Text`
-  color: ${colors.red};
-  text-align: center;
-  font-family: Rajdhani;
-  font-size: 42px;
-  width: 70%
-`;
-
 const TextContainer = styled.View`
   align-items: center;
   padding-vertical: 20px
@@ -103,22 +93,26 @@ const BarContainer = styled.View`
 `;
 
 const MainScreen = () => {
+  const [donation, setDonation] = useState(14950);
+
   return (
     <SafeAreaContainer>
       <Container>
         <Logo
           source={require('../../../assets/images/BloodDonation.png')}
         />
-        <BloodCounter>
-          4,950ml
-        </BloodCounter>
-        <PlusContainer>
-          <Plus />
-        </PlusContainer>
+        <Animated.Text style={styles.bloodContainer}>
+         <CountUp isCounting end={donation} duration={3.2} easing={'easeOutCubic'} />
+          ml
+        </Animated.Text>
+        <DonationModal 
+          onPress={() => setDonation(donation + 500)
+          }
+        />
       </Container>
       <BarContainer>
         <Progress.Bar 
-          progress={0.3} 
+          progress={donation / 18000} 
           width={200} 
           height={10}
           color={colors.green}
@@ -152,5 +146,15 @@ const MainScreen = () => {
     </SafeAreaContainer>
   )
 }
+
+const styles = StyleSheet.create({
+  bloodContainer: {
+    fontFamily: "Megrim",
+    fontSize: 60,
+    color: colors.red,
+    paddingVertical: 10,
+    width: 230,
+  }
+});
 
 export default MainScreen

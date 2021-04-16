@@ -9,7 +9,7 @@ import Raport from '../../components/Icons/Raport'
 import User from '../../components/Icons/User'
 
 
-import TabBar from '../../components/TabBar/TabBar'
+import CustomTabBar from '../../components/CustomTabBar/CustomTabBar'
 import MainScreen from '../MainScreen/MainScreen';
 import RaportsScreen from '../RaportsScreen/RaportsScreen';
 import UserScreen from '../UserScreen/UserScreen';
@@ -26,21 +26,39 @@ const LoggedInStack = ({ route }: ILoggedInStack) => {
   const Tab = createBottomTabNavigator();
   return (
     <>
-      <Tab.Navigator tabBar={TabBar}>
+      <Tab.Navigator >
         <Tab.Screen
           component={MainScreen}
           name={Routes.MainScreen}
           initialParams={route.params}
+          options={{
+            tabBarLabel: 'Ekran główny',
+            tabBarIcon: () => (
+              <Heart />
+            ),
+          }}        
         />
         <Tab.Screen
           component={RaportsScreen}
           name={Routes.RaportsScreen}
           initialParams={route.params}
+          options={{
+            tabBarLabel: 'Raporty',
+            tabBarIcon: () => (
+              <Raport />
+            ),
+          }}  
         />
         <Tab.Screen
           component={UserScreen}
           name={Routes.UserScreen}
           initialParams={route.params}
+          options={{
+            tabBarLabel: 'Użytkownik',
+            tabBarIcon: () => (
+              <User />
+            ),
+          }}  
         />
       </Tab.Navigator>
     </>
