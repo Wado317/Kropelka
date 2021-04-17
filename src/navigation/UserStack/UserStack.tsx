@@ -10,10 +10,11 @@ import User from '../../components/Icons/User'
 
 
 import CustomTabBar from '../../components/CustomTabBar/CustomTabBar'
-import MainScreen from '../MainScreen/MainScreen';
-import RaportsScreen from '../RaportsScreen/RaportsScreen';
-import UserScreen from '../UserScreen/UserScreen';
+import MainScreen from '../../screens/MainScreen/MainScreen';
+import RaportsScreen from '../../screens/RaportsScreen/RaportsScreen';
+import UserScreen from '../../screens/UserScreen/UserScreen';
 import { colors } from '../../const/colors';
+import { NavigationContainer } from '@react-navigation/native';
 
 interface ILoggedInStack {
   route: {
@@ -25,7 +26,7 @@ interface ILoggedInStack {
 const LoggedInStack = ({ route }: ILoggedInStack) => {
   const Tab = createBottomTabNavigator();
   return (
-    <>
+    <NavigationContainer>
       <Tab.Navigator >
         <Tab.Screen
           component={MainScreen}
@@ -61,7 +62,7 @@ const LoggedInStack = ({ route }: ILoggedInStack) => {
           }}  
         />
       </Tab.Navigator>
-    </>
+    </NavigationContainer>
   )
 }
 

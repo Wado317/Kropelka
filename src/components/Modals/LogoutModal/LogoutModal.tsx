@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Modal, StyleSheet, Text, Pressable, View } from "react-native";
 import styled from 'styled-components/native';
 import { colors } from '../../../const/colors';
+import FirebaseAuthService from "../../../services/FirebaseAuthService";
 
 const ButtonTitle = styled.Text`
   font-family: Rajdhani;
@@ -33,8 +34,7 @@ const LogoutModal = () => {
             <Text style={styles.modalText}>Czy na pewno chcesz się wylogować?</Text>
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-              onPressOut={navigation.goBack}
+              onPress={() => FirebaseAuthService.signOut()}
             >
               
               <Text style={styles.textStyle}>Potwierdź</Text>

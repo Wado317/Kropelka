@@ -13,14 +13,14 @@ import LoginScreen from './src/screens/LoginScreen/LoginScreen'
 import RegisterScreen from './src/screens/RegisterScreen/RegisterScreen'
 import RegisterInfoScreen from './src/screens/RegisterScreen/RegisterInfoScreen'
 import RaportsScreen from './src/screens/RaportsScreen/RaportsScreen'
-import LoggedInStack from './src/screens/LoggedInStack/LoggedInstack'
+import LoggedInStack from './src/navigation/UserStack/UserStack'
 import ChangePasswordScreen from './src/screens/ChangePasswordScreen/ChangePasswordScreen'
 
 import { StatusBar } from 'react-native';
 
 const AppStack = createStackNavigator();
 
-const LoginStack = () => {
+export const LoginStack = () => {
   return (
     <>
       <StatusBar backgroundColor={colors.white} barStyle="dark-content" />
@@ -65,7 +65,6 @@ const LoginStack = () => {
 
 const AppConnected = () => {
   return (
-    <NavigationContainer ref={navigationRef}>
       <AppStack.Navigator>
         {/* <AppStack.Screen
           component={SplashScreen}
@@ -91,7 +90,6 @@ const AppConnected = () => {
           options={{ headerShown: false }}
         />   
       </AppStack.Navigator>
-    </NavigationContainer>
   );
 };
 export default AppConnected;

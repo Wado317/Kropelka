@@ -8,6 +8,7 @@ import { UniversalInput } from '../../components/UniversalInput/UniversalInput';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import TextValidator from '../../helpers/validators';
 import BackButton from '../../components/BackButton/BackButton'
+import FirebaseAuthService from '../../services/FirebaseAuthService';
 
 const Screen = styled.SafeAreaView`
   flex: 1;
@@ -140,7 +141,12 @@ const LoginScreen = () => {
         <ButtonContainer>
           <RoundButton 
             label={'Zaloguj się'}
-            onPress={goToLoggedInStackScreen}
+            onPress={() =>
+              FirebaseAuthService.signInWithEmailAndPassword(
+                email,
+                password,
+              )
+            }
             background={colors.white}
             textColor={colors.red}
             border={colors.white}
