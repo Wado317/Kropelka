@@ -2,7 +2,6 @@ import {ThemeProvider} from 'styled-components';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import React, {Component} from 'react';
 import {StatusBar, TouchableOpacity, View} from 'react-native';
-import AppConnected from './AppConnected';
 import {colors} from './src/const/colors';
 import Toast from 'react-native-toast-message';
 import UserSessinService, {
@@ -11,7 +10,8 @@ import UserSessinService, {
 } from './src/services/UserSessionService';
 import FirebaseAuthService from './src/services/FirebaseAuthService';
 import LoginStack from './src/navigation/LoginStack/LoginStack'
-import LoggedInStack from './src/navigation/UserStack/UserStack'
+import UserStack from './src/navigation/UserStack/UserStack'
+import ChangePasswordScreen from './src/screens/ChangePasswordScreen/ChangePasswordScreen'
 import { NavigationContainer } from '@react-navigation/native';
 // modal toast --
 
@@ -49,11 +49,9 @@ class App
     switch (this.state.authState) {
       case 'logged':
         return (
-          <LoggedInStack route={{}}
-          />
+          <UserStack route={{}} />
         );
       case 'not_logged':
-        //   return <AppConnected />;
         // case 'pending':
         return (
           <LoginStack />

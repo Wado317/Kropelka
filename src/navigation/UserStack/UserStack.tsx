@@ -1,13 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { StyleSheet, Text, View } from 'react-native'
 
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { BottomTabBarOptions, BottomTabBarProps, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { Routes } from '../../const/routes';
-import Heart from '../../components/Icons/Heart'
-import Raport from '../../components/Icons/Raport'
-import User from '../../components/Icons/User'
-
 
 import CustomTabBar from '../../components/CustomTabBar/CustomTabBar'
 import MainScreen from '../../screens/MainScreen/MainScreen';
@@ -15,55 +11,63 @@ import RaportsScreen from '../../screens/RaportsScreen/RaportsScreen';
 import UserScreen from '../../screens/UserScreen/UserScreen';
 import { colors } from '../../const/colors';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import ChangePasswordScreen from '../../screens/ChangePasswordScreen/ChangePasswordScreen';
 
-interface ILoggedInStack {
+interface IUserStack {
   route: {
     params?: {
       fromLogin?: boolean;
     };
   };
 }
-const LoggedInStack = ({ route }: ILoggedInStack) => {
+
+const SettingsNavigator = createStackNavigator();
+
+const HomeTabs = ({ route }: IUserStack) => {
   const Tab = createBottomTabNavigator();
   return (
+    <Tab.Navigator 
+      tabBar={(props: BottomTabBarProps<BottomTabBarOptions>) => <CustomTabBar props={props}/>}
+    >
+      <Tab.Screen
+        component={MainScreen}
+        name={Routes.MainScreen}
+        initialParams={route.params}    
+      />
+      <Tab.Screen
+        component={RaportsScreen}
+        name={Routes.RaportsScreen}
+        initialParams={route.params}
+      />
+      <Tab.Screen
+        component={UserScreen}
+        name={Routes.UserScreen}
+        initialParams={route.params}
+      />
+    </Tab.Navigator>
+  );
+};
+
+const UserStack = ({ route }: IUserStack) => {
+  return (
     <NavigationContainer>
-      <Tab.Navigator >
-        <Tab.Screen
-          component={MainScreen}
-          name={Routes.MainScreen}
-          initialParams={route.params}
-          options={{
-            tabBarLabel: 'Ekran główny',
-            tabBarIcon: () => (
-              <Heart />
-            ),
-          }}        
-        />
-        <Tab.Screen
-          component={RaportsScreen}
-          name={Routes.RaportsScreen}
-          initialParams={route.params}
-          options={{
-            tabBarLabel: 'Raporty',
-            tabBarIcon: () => (
-              <Raport />
-            ),
-          }}  
-        />
-        <Tab.Screen
-          component={UserScreen}
+      <SettingsNavigator.Navigator>
+        <SettingsNavigator.Screen
+          component={HomeTabs}
           name={Routes.UserScreen}
           initialParams={route.params}
-          options={{
-            tabBarLabel: 'Użytkownik',
-            tabBarIcon: () => (
-              <User />
-            ),
-          }}  
+          options={{ headerShown: false }}
         />
-      </Tab.Navigator>
+        <SettingsNavigator.Screen
+          component={ChangePasswordScreen}
+          name={Routes.ChangePasswordScreen}
+          initialParams={route.params}
+          options={{ headerShown: false }}
+        />
+      </SettingsNavigator.Navigator>
     </NavigationContainer>
   )
 }
 
-export default LoggedInStack
+export default UserStack

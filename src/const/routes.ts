@@ -11,5 +11,6 @@ export enum Routes {
   AccSettingsScreen = 'AccSettingsScreen',
   ChangePasswordScreen = 'ChangePasswordScreen',
   RaportsScreen = 'RaportsScreen',
-  MainScreen = 'MainScreen'
+  MainScreen = 'MainScreen',
+  SettingsStack = 'SettingsStack',
 }

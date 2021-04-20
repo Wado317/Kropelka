@@ -63,21 +63,15 @@ const CustomTabBar: FC<CustomTabBarProps> = ({props}) => {
   ): JSX.Element {
     return (
       <TouchableOpacity
-        activeOpacity={0.8}
+        activeOpacity={0.9}
         style={styles.tab}
-        onPress={() => onPress()}>
-        <View
-          style={{
-            height: '80%',
-            aspectRatio: 1,
-          }}>
-
-        </View>
-
+        onPress={() => onPress()}
+      >
+        {imageSource}
         <Text
           style={{
             paddingTop: 8,
-            color: isActive ? colors.white : colors.darkGrey,
+            color: isActive ? colors.white : colors.white,
             fontWeight: '500',
           }}
         >
@@ -92,21 +86,21 @@ const CustomTabBar: FC<CustomTabBarProps> = ({props}) => {
   return (
     <SafeAreaView style={styles.mainContainer}>
       {renderTab(
-        'Ustawienia', // TODO: Localizable strings
+        'Ekran głowny', // TODO: Localizable strings
         8,
         <Heart />,
         () => navigation.navigate(routes[0]),
         index === 0,
       )}
       {renderTab(
-        'Ciocio Klub', // TODO: Localizable strings
+        'Raporty', // TODO: Localizable strings
         8,
         <Raport />,
         () => navigation.navigate(routes[1]),
         index === 1,
       )}
       {renderTab(
-        'Przedmioty', // TODO: Localizable strings
+        'Ustawienia', // TODO: Localizable strings
         8,
         <User />,
         () => navigation.navigate(routes[2]),
@@ -117,13 +111,11 @@ const CustomTabBar: FC<CustomTabBarProps> = ({props}) => {
 };
 const styles = StyleSheet.create({
   mainContainer: {
-    height: 85,
+    height: 95,
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'space-evenly',
     backgroundColor: colors.red,
-    borderTopColor: colors.red,
-    borderTopWidth: 0.5,
     shadowOffset: {width: 2, height: 2},
     shadowColor: colors.darkGrey,
     shadowOpacity: 0.2,
@@ -132,6 +124,7 @@ const styles = StyleSheet.create({
   tab: {
     flex: 1,
     padding: 8,
+    marginTop: 5,
     alignItems: 'center',
     backgroundColor: colors.red,
     flexDirection: 'column',

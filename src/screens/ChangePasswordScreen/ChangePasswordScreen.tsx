@@ -12,8 +12,6 @@ import FirebaseAuthService from '../../services/FirebaseAuthService';
 import Toast from 'react-native-toast-message';
 import BackButton from '../../components/BackButton/BackButton'
 
-const { height: screenHeight } = Dimensions.get('window');
-
 const Screen = styled.SafeAreaView`
   flex: 1;
   background-color: ${colors.white};
@@ -56,7 +54,7 @@ const ValidationInfo = styled.Text`
   margin-vertical: 5px;
 `;
 
-const ChangePasswordScreenScreen = () => {
+const ChangePasswordScreen = () => {
   const [oldPassword, setOldPassword] = useState<string>('');
   const [newPassword, setNewPassword] = useState<string>('');
   const [newPassword2, setNewPassword2] = useState<string>('');
@@ -95,20 +93,17 @@ const ChangePasswordScreenScreen = () => {
     return isValid;
   }, [newPassword, newPassword2]);
 
-  const handleRegister = async () => {
+  const handlePasswordChange = async () => {
     if (!validate()) {
       return;
     }
     try {
-      // await FirebaseAuthService.signUpWithEmailAndPassword( email, password )
-      // Toast.show({
-      //   type: 'success',
-      //   text1: 'Udało się!',
-      //   text2: 'Twoje konto zostało utworzone!',
-      //   topOffset: 50,
-      // });
-    } catch (error) {
+      await FirebaseAuthService.changePassword( newPassword, oldPassword );
+    }
+    catch (error) {
+      console.warn(error);
     };
+    navigation.navigate(Routes.UserScreen);
   };
 
   return (
@@ -134,7 +129,6 @@ const ChangePasswordScreenScreen = () => {
             placeholder={'Wpisz stare hasło...'}
             placeholderTextColor={colors.darkGrey}
             />
-          <ValidationInfo>{passwordError}</ValidationInfo>
           <UniversalRedInput 
             label={'Nowe hasło'}
             secure={true}
@@ -156,7 +150,7 @@ const ChangePasswordScreenScreen = () => {
           <ButtonContainer>
             <RoundButton 
               label={'Zmień hasło'}
-              onPress={handleRegister}
+              onPress={handlePasswordChange}
               background={colors.red}
               textColor={colors.white}
               border={colors.white}
@@ -168,4 +162,4 @@ const ChangePasswordScreenScreen = () => {
   )
 }
 
-export default ChangePasswordScreenScreen
+export default ChangePasswordScreen

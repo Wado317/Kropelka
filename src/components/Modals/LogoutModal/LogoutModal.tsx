@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     margin: 20,
+    width: "90%",
     backgroundColor: colors.white,
     borderRadius: 20,
     padding: 35,
@@ -84,14 +85,14 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     elevation: 2,
-    width: 200
+    width: "65%"
   },
   button2: {
     borderRadius: 20,
     padding: 9,
     elevation: 2,
     marginTop: 10,
-    width: 200
+    width: "65%"
   },
   buttonClose: {
     backgroundColor: colors.red,

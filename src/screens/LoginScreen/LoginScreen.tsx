@@ -1,8 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import { colors } from '../../const/colors'
-import { useNavigation } from '@react-navigation/native';
 import styled from 'styled-components/native';
-import { Routes } from '../../const/routes';
 import { RoundButton } from '../../components/Button/Button';
 import { UniversalInput } from '../../components/UniversalInput/UniversalInput';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
@@ -82,12 +80,6 @@ const LoginScreen = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [emailError, setEmailError] = useState<string>('');
-
-  const navigation = useNavigation();
-
-  const goToLoggedInStackScreen = () => {
-    navigation.navigate(Routes.LoggedInStack)
-  };
 
   const inputHandler = useCallback(
     (handler: any) => (value: string): void => {
