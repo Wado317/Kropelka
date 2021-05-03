@@ -4,9 +4,9 @@ import React, {Component} from 'react';
 import {StatusBar, TouchableOpacity, View} from 'react-native';
 import {colors} from './src/const/colors';
 import Toast from 'react-native-toast-message';
-import UserSessinService, {
+import UserSessionService, {
   AuthState,
-  UserSessinServiceConsumer,
+  UserSessionServiceConsumer,
 } from './src/services/UserSessionService';
 import FirebaseAuthService from './src/services/FirebaseAuthService';
 import LoginStack from './src/navigation/LoginStack/LoginStack'
@@ -21,27 +21,27 @@ interface AppState {
 
 class App
   extends Component<any, AppState>
-  implements UserSessinServiceConsumer {
+  implements UserSessionServiceConsumer {
   constructor(props: any) {
     super(props);
 
     this.state = {
-      authState: UserSessinService.shared.authState,
+      authState: UserSessionService.shared.authState,
     };
   }
 
   componentDidMount() {
     StatusBar.setBarStyle('dark-content', true);
-    UserSessinService.shared.addConsumer(this);
+    UserSessionService.shared.addConsumer(this);
   }
 
   componentWillUnmount() {
-    UserSessinService.shared.removeConsumer(this);
+    UserSessionService.shared.removeConsumer(this);
   }
 
   /* ----- UserSessinServiceConsumer Methods ----- */
   onAuthStateChange() {
-    this.setState({authState: UserSessinService.shared.authState});
+    this.setState({authState: UserSessionService.shared.authState});
   }
 
   /*----- Rendering  ----- */

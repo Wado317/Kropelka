@@ -3,22 +3,22 @@ import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 export type AuthState = 'pending' | 'logged' | 'not_logged';
 
-export interface UserSessinServiceConsumer {
+export interface UserSessionServiceConsumer {
   onAuthStateChange?();
 }
 
-class UserSessinService {
-  private static _instance: UserSessinService;
+class UserSessionService {
+  private static _instance: UserSessionService;
   private _authState: AuthState = 'pending';
 
   /* ------------------ Consumer distribution ----------------- */
-  private consumers: UserSessinServiceConsumer[] = [];
+  private consumers: UserSessionServiceConsumer[] = [];
 
-  addConsumer(consumer: UserSessinServiceConsumer) {
+  addConsumer(consumer: UserSessionServiceConsumer) {
     this.consumers.push(consumer);
   }
 
-  removeConsumer(consumer: UserSessinServiceConsumer) {
+  removeConsumer(consumer: UserSessionServiceConsumer) {
     const index = this.consumers.indexOf(consumer, 0);
     if (index > -1) this.consumers.splice(index, 1);
   }
@@ -38,7 +38,7 @@ class UserSessinService {
     this.observeUserSession();
   }
 
-  public static get shared(): UserSessinService {
+  public static get shared(): UserSessionService {
     return this._instance || (this._instance = new this());
   }
 
@@ -65,4 +65,4 @@ class UserSessinService {
   }
 }
 
-export default UserSessinService;
+export default UserSessionService;
