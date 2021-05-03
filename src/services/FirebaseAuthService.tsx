@@ -8,6 +8,7 @@ export default class FirebaseAuthService {
   public static async signUpWithEmailAndPassword(
     email: string,
     password: string,
+    userModel: { additionalData: { name: string, surname: string } } // TODO: Add type 
   ): Promise<any> {
     try {
       const user = await auth().createUserWithEmailAndPassword(email, password);
@@ -15,7 +16,7 @@ export default class FirebaseAuthService {
       await database()
         .ref('users/')
         .child(user.user.uid)
-        .set({ registerDate: timestamp });
+        .set({ ...userModel, registerDate: timestamp });
     } catch (error) {
       console.warn(error);
       return error;

@@ -88,7 +88,7 @@ const RegisterInfoScreen = () => {
   );
 
   return (
-    <Screen> 
+    <Screen>
       <KeyboardAwareScrollView>
         <TopBar>
           <Logo
@@ -100,7 +100,7 @@ const RegisterInfoScreen = () => {
         </TopBar>
         <Container>
           <PickerContainer>
-            <UniversalRedInput 
+            <UniversalRedInput
               label={'Twoje imie'}
               secure={false}
               value={name}
@@ -110,18 +110,18 @@ const RegisterInfoScreen = () => {
             />
             <PickerTitle>Wybierz swoją płeć:</PickerTitle>
             <Picker
-              style = {{width: 300 }}
+              style={{ width: 300 }}
               selectedValue={selectedSex}
               onValueChange={(itemValue, itemIndex) =>
-              setSelectedSex(itemValue)
-            }>
+                setSelectedSex(itemValue)
+              }>
               <Picker.Item label="Kobieta" value="female" />
               <Picker.Item label="Mężczyzna" value="male" />
             </Picker>
           </PickerContainer>
           <ButtonContainer>
-            <RoundButton 
-              label={'Stwórz konto'}
+            <RoundButton
+              label={'Przejdź dalej'}
               onPress={goToLoggedInStackScreen}
               background={colors.red}
               textColor={colors.white}

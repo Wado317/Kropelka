@@ -64,7 +64,7 @@ const IntroScreen = () => {
   };
 
   const goToRegisterScreen = () => {
-    navigation.navigate(Routes.RegisterScreen);
+    navigation.navigate(Routes.RegisterInfoScreen);
   };
 
   return (
