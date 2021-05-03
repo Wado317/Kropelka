@@ -7,6 +7,8 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
 import TextValidator from '../../helpers/validators';
 import BackButton from '../../components/BackButton/BackButton'
 import FirebaseAuthService from '../../services/FirebaseAuthService';
+import { useNavigation } from '@react-navigation/native';
+import { Routes } from '../../const/routes';
 
 const Screen = styled.SafeAreaView`
   flex: 1;
@@ -75,12 +77,25 @@ const ValidationInfo = styled.Text`
   margin-horizontal: 35px;
   margin-vertical: 5px;
 `;
+const ForgotPasswordContainer = styled.TouchableOpacity`
+  flex: 1;
+  align-items: center
+`;
+
+const ForgotPassword = styled.Text`
+  color: ${colors.white};
+`;
 
 const LoginScreen = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [emailError, setEmailError] = useState<string>('');
 
+  const navigation = useNavigation();
+
+  const goToForgotPasswordScreen = () => {
+    navigation.navigate(Routes.ForgotPasswordScreen);
+  };
   const inputHandler = useCallback(
     (handler: any) => (value: string): void => {
       handler(value);
@@ -130,6 +145,13 @@ const LoginScreen = () => {
           placeholder={'Wpisz hasło...'}
           placeholderTextColor={colors.lightGrey}
         />
+        <ForgotPasswordContainer
+          onPress={goToForgotPasswordScreen}
+        >
+          <ForgotPassword>
+            Zapomniałeś hasła?
+          </ForgotPassword>
+        </ForgotPasswordContainer>
         <ButtonContainer>
           <RoundButton 
             label={'Zaloguj się'}

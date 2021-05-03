@@ -41,6 +41,29 @@ export default class FirebaseAuthService {
     }
   }
 
+  public static async forgotPassword(
+    email: string
+  ): Promise<any> {
+    try {
+      await auth().sendPasswordResetEmail(email);
+    } catch (error){
+      console.warn(error);
+      Toast.show({
+        type: 'error',
+        text1: 'Ups!',
+        text2: 'Coś poszło nie tak, spróbuj ponownie!',
+        topOffset: 50,
+      });
+      return error;
+    }
+    Toast.show({
+      type: 'success',
+      text1: 'Brawo!',
+      text2: 'Wysłalismy do Ciebie maila ze zmianą hasła.',
+      topOffset: 50,
+    });
+  }
+
   public static async changePassword(
     newPassword: string,
     oldPassword: string,

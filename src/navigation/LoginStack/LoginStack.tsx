@@ -11,8 +11,7 @@ import LoginScreen from '../../../src/screens/LoginScreen/LoginScreen'
 import RegisterScreen from '../../../src/screens/RegisterScreen/RegisterScreen'
 import RegisterInfoScreen from '../../../src/screens/RegisterScreen/RegisterInfoScreen'
 import RaportsScreen from '../../../src/screens/RaportsScreen/RaportsScreen'
-import LoggedInStack from '../../../src/navigation/UserStack/UserStack'
-import ChangePasswordScreen from '../../../src/screens/ChangePasswordScreen/ChangePasswordScreen'
+import ForgotPasswordScreen from '../../../src/screens/ForgotPasswordScreen/ForgotPasswordScreen'
 
 import { StatusBar } from 'react-native';
 
@@ -40,6 +39,11 @@ const LoginStack = () => {
           <AppStack.Screen
             component={LoginScreen}
             name={Routes.LoginScreen}
+            options={{ headerShown: false }}
+          />
+          <AppStack.Screen
+            component={ForgotPasswordScreen}
+            name={Routes.ForgotPasswordScreen}
             options={{ headerShown: false }}
           />
           <AppStack.Screen
