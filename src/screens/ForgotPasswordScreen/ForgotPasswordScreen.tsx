@@ -19,7 +19,6 @@ const Screen = styled.SafeAreaView`
 `;
 
 const TopBar = styled.View`
-  flex: 1;
   align-items: center;
   margin-top: 20px;
 `;
@@ -39,13 +38,13 @@ const Header = styled.Text`
 
 const Container = styled.View`
   flex: 1;
-  justify-content: center;
   align-items: center;
-  margin-top: 80px;
+  margin-top: 100px;
 `;
 
 const ButtonContainer = styled.View`
-  margin-top: 130px;
+  position: absolute;
+  bottom: 50px;
 `;
 
 const ForgotPasswordScreen = () => {
@@ -61,7 +60,7 @@ const ForgotPasswordScreen = () => {
   );
 
   const handleForgotPassword = () => {
-    try{
+    try {
       FirebaseAuthService.forgotPassword(email);
     } catch (error) {
       console.warn(error);
@@ -70,37 +69,35 @@ const ForgotPasswordScreen = () => {
   };
 
   return (
-    <Screen>  
-      <KeyboardAwareScrollView style= {{ width: '100%', height: 100 }}>
-        <TopBar>
-          <BackButton />
-          <Logo
-            source={require('../../components/kropelka/kropelka.png')}
-          />
-          <Header>
-            Przypomnienie hasła
+    <Screen>
+      <TopBar>
+        <BackButton />
+        <Logo
+          source={require('../../components/kropelka/kropelka.png')}
+        />
+        <Header>
+          Przypomnienie hasła
           </Header>
-        </TopBar>
-        <Container>
-          <UniversalRedInput 
-            label={'Twój adres email'}
-            secure={false}
-            value={email}
-            onChangeText={inputHandler(setEmail)}
-            placeholder={'Wpisz swój email...'}
-            placeholderTextColor={colors.darkGrey}
+      </TopBar>
+      <Container>
+        <UniversalRedInput
+          label={'Twój adres email'}
+          secure={false}
+          value={email}
+          onChangeText={inputHandler(setEmail)}
+          placeholder={'Wpisz swój email...'}
+          placeholderTextColor={colors.darkGrey}
+        />
+        <ButtonContainer>
+          <RoundButton
+            label={'Przypomnij hasło'}
+            onPress={handleForgotPassword}
+            background={colors.red}
+            textColor={colors.white}
+            border={colors.white}
           />
-          <ButtonContainer>
-            <RoundButton 
-              label={'Przypomnij hasło'}
-              onPress={handleForgotPassword}
-              background={colors.red}
-              textColor={colors.white}
-              border={colors.white}
-            />
-          </ButtonContainer>
-        </Container>
-      </KeyboardAwareScrollView>
+        </ButtonContainer>
+      </Container>
     </Screen>
   )
 }

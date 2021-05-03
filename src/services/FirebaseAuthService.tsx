@@ -15,7 +15,7 @@ export default class FirebaseAuthService {
       await database()
         .ref('users/')
         .child(user.user.uid)
-        .set({registerDate: timestamp});
+        .set({ registerDate: timestamp });
     } catch (error) {
       console.warn(error);
       return error;
@@ -46,7 +46,7 @@ export default class FirebaseAuthService {
   ): Promise<any> {
     try {
       await auth().sendPasswordResetEmail(email);
-    } catch (error){
+    } catch (error) {
       console.warn(error);
       Toast.show({
         type: 'error',
@@ -87,12 +87,12 @@ export default class FirebaseAuthService {
               topOffset: 50,
             });
           });
-          Toast.show({
-            type: 'success',
-            text1: 'Brawo!',
-            text2: 'Twoje hasło zostało zmienione!',
-            topOffset: 50,
-          });
+        Toast.show({
+          type: 'success',
+          text1: 'Brawo!',
+          text2: 'Twoje hasło zostało zmienione!',
+          topOffset: 50,
+        });
       })
       .catch((error) => {
         console.warn(error);
