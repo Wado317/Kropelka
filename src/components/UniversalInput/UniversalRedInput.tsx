@@ -23,7 +23,7 @@ const InputTitle = styled.Text`
   margin-bottom: 10px;
 `;
 
-export const UniversalRedInput = ({ label, secure, value, placeholder, placeholderTextColor, onChangeText }) => {
+export const UniversalRedInput = ({ label, secure, value, placeholder, placeholderTextColor, onChangeText, autoCapitalize }) => {
   return (
     <Container>
       <InputTitle>
@@ -35,7 +35,7 @@ export const UniversalRedInput = ({ label, secure, value, placeholder, placehold
         placeholder={placeholder}
         placeholderTextColor={placeholderTextColor}
         onChangeText={onChangeText}
-        autoCapitalize="none"
+        autoCapitalize={autoCapitalize}
       />
       <InputBottom 
         source={require('../../../assets/images/InputRed.png')}

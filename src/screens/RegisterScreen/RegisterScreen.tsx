@@ -68,7 +68,7 @@ const ValidationInfo = styled.Text`
   margin-vertical: 5px;
 `;
 
-const RegisterScreen = () => {
+const RegisterScreen = ({route}) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [password2, setPassword2] = useState<string>('');
@@ -76,17 +76,15 @@ const RegisterScreen = () => {
   const [passwordError, setPasswordError] = useState<string>('');
   const [password2Error, setPassword2Error] = useState<string>('');
   const [isFormValid, setIsFormValid] = useState(false);
+  const { name, selectedSex } = route.params;
 
   const navigation = useNavigation();
-
-  const ref_input1 = useRef();
-  const ref_input2 = useRef();
-  const ref_input3 = useRef();
+  console.warn(name)
 
   const goToRegisterInfoScreenScreen = () => {
     navigation.navigate(Routes.RegisterInfoScreen)
   };
-// dodanie loader-a na isLoading
+  // dodanie loader-a na isLoading
   const inputHandler = useCallback(
     (handler: any) => (value: string): void => {
       handler(value);
@@ -128,7 +126,7 @@ const RegisterScreen = () => {
       return;
     }
     try {
-      await FirebaseAuthService.signUpWithEmailAndPassword( email, password )
+      await FirebaseAuthService.signUpWithEmailAndPassword(email, password)
       Toast.show({
         type: 'success',
         text1: 'Udało się!',
@@ -140,10 +138,9 @@ const RegisterScreen = () => {
   };
 
   return (
-    <Screen>  
-      <KeyboardAwareScrollView style= {{ width: '100%', height: 100 }}>
+    <Screen>
+      <KeyboardAwareScrollView style={{ width: '100%', height: 100 }}>
         <TopBar>
-          <BackButton />
           <Logo
             source={require('../../components/kropelka/kropelka.png')}
           />
@@ -152,39 +149,38 @@ const RegisterScreen = () => {
           </Header>
         </TopBar>
         <Container>
-          <UniversalRedInput 
+          <UniversalRedInput
             label={'Adres email'}
             secure={false}
             value={email}
             onChangeText={inputHandler(setEmail)}
-            // REF!! przeskoki miedzy inputami, przed funkcja focus "?" wrazie wywalenia sie refa (ominiecie crash-a apki)
-            // inputy bez styled components
-            // animacja oddanej krwii
-            
             placeholder={'Wpisz email...'}
             placeholderTextColor={colors.darkGrey}
-            />
+            autoCapitalize={'none'}
+          />
           <ValidationInfo>{emailError}</ValidationInfo>
-          <UniversalRedInput 
+          <UniversalRedInput
             label={'Hasło'}
             secure={true}
             value={password}
             onChangeText={inputHandler(setPassword)}
             placeholder={'Wpisz hasło...'}
             placeholderTextColor={colors.darkGrey}
-            />
+            autoCapitalize={'none'}
+          />
           <ValidationInfo>{passwordError}</ValidationInfo>
-          <UniversalRedInput 
+          <UniversalRedInput
             label={'Powtórz hasło'}
             secure={true}
             value={password2}
             onChangeText={inputHandler(setPassword2)}
             placeholder={'Wpisz hasło...'}
             placeholderTextColor={colors.darkGrey}
-            />
+            autoCapitalize={'none'}
+          />
           <ValidationInfo>{password2Error}</ValidationInfo>
           <ButtonContainer>
-            <RoundButton 
+            <RoundButton
               label={'Przejdź dalej'}
               onPress={handleRegister}
               background={colors.red}

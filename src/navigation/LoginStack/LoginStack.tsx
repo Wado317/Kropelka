@@ -56,11 +56,6 @@ const LoginStack = () => {
             name={Routes.RegisterInfoScreen}
             options={{ headerShown: false }}
           />
-          <AppStack.Screen
-            component={RaportsScreen}
-            name={Routes.RaportsScreen}
-            options={{ headerShown: false }}
-          />
         </AppStack.Navigator>
       </NavigationContainer>
     </>

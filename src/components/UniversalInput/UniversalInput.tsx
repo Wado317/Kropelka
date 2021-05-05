@@ -45,4 +45,3 @@ export const UniversalInput = ({ label, secure, value, placeholder, placeholderT
 }
 
 export default UniversalInput
-

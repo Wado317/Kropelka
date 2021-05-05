@@ -128,6 +128,7 @@ const ChangePasswordScreen = () => {
             
             placeholder={'Wpisz stare hasło...'}
             placeholderTextColor={colors.darkGrey}
+            autoCapitalize={'none'}
             />
           <UniversalRedInput 
             label={'Nowe hasło'}
@@ -136,6 +137,7 @@ const ChangePasswordScreen = () => {
             onChangeText={inputHandler(setNewPassword)}
             placeholder={'Wpisz nowe hasło...'}
             placeholderTextColor={colors.darkGrey}
+            autoCapitalize={'none'}
             />
           <ValidationInfo>{passwordError}</ValidationInfo>
           <UniversalRedInput 
@@ -145,6 +147,7 @@ const ChangePasswordScreen = () => {
             onChangeText={inputHandler(setNewPassword2)}
             placeholder={'Wpisz nowe hasło...'}
             placeholderTextColor={colors.darkGrey}
+            autoCapitalize={'none'}
             />
           <ValidationInfo>{password2Error}</ValidationInfo>
           <ButtonContainer>

@@ -5,16 +5,16 @@ import { useNavigation } from '@react-navigation/native';
 import styled from 'styled-components/native';
 import { Routes } from '../../const/routes';
 import { RoundButton } from '../../components/Button/Button';
-import { Picker } from '@react-native-picker/picker';
+import Selector from '../../components/Selector/Selector'
 import { UniversalRedInput } from '../../components/UniversalInput/UniversalRedInput';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
+import BackButton from '../../components/BackButton/BackButton';
 
 const { height: screenHeight } = Dimensions.get('window');
 
 const Screen = styled.SafeAreaView`
   flex: 1;
   background-color: ${colors.white};
-  align-items: center;
 `;
 
 const TopBar = styled.View`
@@ -50,7 +50,7 @@ const PickerContainer = styled.View`
 const PickerTitle = styled.Text`
   font-family: 'Rajdhani';
   font-size: 20px;
-  margin-top: 30px;
+  margin-top: 20px;
 `;
 
 const Container = styled.View`
@@ -67,7 +67,7 @@ const Header = styled.Text`
 `;
 
 const ButtonContainer = styled.View`
-  margin-top: 10px
+  margin-top: 20px
 `;
 
 const RegisterInfoScreen = () => {
@@ -76,8 +76,9 @@ const RegisterInfoScreen = () => {
 
   const navigation = useNavigation();
 
-  const goToLoggedInStackScreen = () => {
-    navigation.navigate(Routes.LoggedInStack)
+  const goToRegisterScreen = () => {
+    navigation.navigate(Routes.RegisterScreen, {
+    name: name, selectedSex: selectedSex })
   };
 
   const inputHandler = useCallback(
@@ -91,6 +92,7 @@ const RegisterInfoScreen = () => {
     <Screen>
       <KeyboardAwareScrollView>
         <TopBar>
+          <BackButton />
           <Logo
             source={require('../../components/kropelka/kropelka.png')}
           />
@@ -107,22 +109,15 @@ const RegisterInfoScreen = () => {
               onChangeText={inputHandler(setName)}
               placeholder={'Wpisz imie...'}
               placeholderTextColor={colors.darkGrey}
+              autoCapitalize={'words'}
             />
-            <PickerTitle>Wybierz swoją płeć:</PickerTitle>
-            <Picker
-              style={{ width: 300 }}
-              selectedValue={selectedSex}
-              onValueChange={(itemValue, itemIndex) =>
-                setSelectedSex(itemValue)
-              }>
-              <Picker.Item label="Kobieta" value="female" />
-              <Picker.Item label="Mężczyzna" value="male" />
-            </Picker>
+            <PickerTitle>Wybierz płeć:</PickerTitle>
+            <Selector />
           </PickerContainer>
           <ButtonContainer>
             <RoundButton
               label={'Przejdź dalej'}
-              onPress={goToLoggedInStackScreen}
+              onPress={goToRegisterScreen}
               background={colors.red}
               textColor={colors.white}
               border={colors.white}

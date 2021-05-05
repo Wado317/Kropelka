@@ -1,14 +1,18 @@
 import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
-import ChangePasswordScreen from '../screens/ChangePasswordScreen/ChangePasswordScreen';
 import DateService from './DateService';
 import Toast from 'react-native-toast-message';
+
+export interface ApiUserModel {
+  additionalData: { name: string, surname: string }
+}
 
 export default class FirebaseAuthService {
   public static async signUpWithEmailAndPassword(
     email: string,
     password: string,
-    userModel: { additionalData: { name: string, surname: string } } // TODO: Add type 
+    userModel: ApiUserModel
+    //czy na tym urzadzeniu byla juz ta apka uzywana, ciocia renia pierwsze uruchaianie i zapoznanie z apka
   ): Promise<any> {
     try {
       const user = await auth().createUserWithEmailAndPassword(email, password);
