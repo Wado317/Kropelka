@@ -4,14 +4,15 @@ import DateService from './DateService';
 import Toast from 'react-native-toast-message';
 
 export interface ApiUserModel {
-  additionalData: { name: string, surname: string }
+  additionalData: {name: string; gender: string};
+  data: {donatedBeforeRegistration: number};
 }
 
 export default class FirebaseAuthService {
   public static async signUpWithEmailAndPassword(
     email: string,
     password: string,
-    userModel: ApiUserModel
+    userModel: ApiUserModel,
     //czy na tym urzadzeniu byla juz ta apka uzywana, ciocia renia pierwsze uruchaianie i zapoznanie z apka
   ): Promise<any> {
     try {
@@ -20,7 +21,7 @@ export default class FirebaseAuthService {
       await database()
         .ref('users/')
         .child(user.user.uid)
-        .set({ ...userModel, registerDate: timestamp });
+        .set({...userModel, registerDate: timestamp});
     } catch (error) {
       console.warn(error);
       return error;
@@ -31,6 +32,7 @@ export default class FirebaseAuthService {
     password: string,
   ): Promise<any> {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const user = await auth().signInWithEmailAndPassword(email, password);
     } catch (error) {
       console.warn(error);
@@ -46,9 +48,7 @@ export default class FirebaseAuthService {
     }
   }
 
-  public static async forgotPassword(
-    email: string
-  ): Promise<any> {
+  public static async forgotPassword(email: string): Promise<any> {
     try {
       await auth().sendPasswordResetEmail(email);
     } catch (error) {
@@ -69,29 +69,21 @@ export default class FirebaseAuthService {
     });
   }
 
-  public static async changePassword(
-    newPassword: string,
-    oldPassword: string,
-  ) {
+  public static async changePassword(newPassword: string, oldPassword: string) {
     const user = auth().currentUser;
-    const cred = auth.EmailAuthProvider.credential(
-      user.email,
-      oldPassword,
-    );
+    const cred = auth.EmailAuthProvider.credential(user.email, oldPassword);
     user
       .reauthenticateWithCredential(cred)
       .then(() => {
-        user
-          .updatePassword(newPassword)
-          .catch((error) => {
-            console.warn(error);
-            Toast.show({
-              type: 'error',
-              text1: 'Ups!',
-              text2: 'Coś poszło nie tak, spróbuj ponownie!',
-              topOffset: 50,
-            });
+        user.updatePassword(newPassword).catch((error) => {
+          console.warn(error);
+          Toast.show({
+            type: 'error',
+            text1: 'Ups!',
+            text2: 'Coś poszło nie tak, spróbuj ponownie!',
+            topOffset: 50,
           });
+        });
         Toast.show({
           type: 'success',
           text1: 'Brawo!',
@@ -110,4 +102,3 @@ export default class FirebaseAuthService {
       });
   }
 }
-

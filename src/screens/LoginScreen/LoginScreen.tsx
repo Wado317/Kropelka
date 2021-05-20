@@ -1,14 +1,14 @@
-import React, { useState, useCallback } from 'react'
-import { colors } from '../../const/colors'
+import React, {useState, useCallback} from 'react';
+import {colors} from '../../const/colors';
 import styled from 'styled-components/native';
-import { RoundButton } from '../../components/Button/Button';
-import { UniversalInput } from '../../components/UniversalInput/UniversalInput';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
+import {RoundButton} from '../../components/Button/Button';
+import {UniversalInput} from '../../components/UniversalInput/UniversalInput';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import TextValidator from '../../helpers/validators';
-import BackButton from '../../components/BackButton/BackButton'
+import BackButton from '../../components/BackButton/BackButton';
 import FirebaseAuthService from '../../services/FirebaseAuthService';
-import { useNavigation } from '@react-navigation/native';
-import { Routes } from '../../const/routes';
+import {useNavigation} from '@react-navigation/native';
+import {Routes} from '../../const/routes';
 
 const Screen = styled.SafeAreaView`
   flex: 1;
@@ -50,7 +50,7 @@ const Header = styled.Text`
   font-family: 'Megrim';
   font-size: 54px;
   color: ${colors.red};
-  margin-top: 30px
+  margin-top: 30px;
 `;
 
 const Container = styled.View`
@@ -79,7 +79,7 @@ const ValidationInfo = styled.Text`
 `;
 const ForgotPasswordContainer = styled.TouchableOpacity`
   flex: 1;
-  align-items: center
+  align-items: center;
 `;
 
 const ForgotPassword = styled.Text`
@@ -102,76 +102,73 @@ const LoginScreen = () => {
     },
     [],
   );
-// niepoprawny adres email i/lub haslo
-//      Vibration.vibrate()
+  // niepoprawny adres email i/lub haslo
+  //      Vibration.vibrate()
 
   const validate = useCallback((): boolean => {
-
     if (!TextValidator.isEmail(email)) {
       setEmailError('Niepoprawny adres email');
     } else {
       setEmailError('');
     }
-    return ;
-  }, [email, password ]);
+    return;
+  }, [email, password]);
+
+  const handleLogin = async () => {
+    if (!validate()) {
+      return;
+    }
+    try {
+      await FirebaseAuthService.signInWithEmailAndPassword(email, password);
+    } catch (error) {
+      console.warn(error);
+    }
+  };
 
   return (
     <Screen>
-      <KeyboardAwareScrollView style={{ flex: 1, height: 100, width: '100%'}}> 
-      <TopBar>
-        <BackButton />
-        <Logo
-          source={require('../../components/kropelka/kropelka.png')}
-        />
-        <Header>
-          Logowanie
-        </Header>
-      </TopBar>
-      <Container>
-        <UniversalInput 
-          label={'Adres email'}
-          secure={false}
-          value={email}
-          onChangeText={inputHandler(setEmail)}
-          placeholder={'Wpisz nazwę...'}
-          placeholderTextColor={colors.lightGrey}
-        />
-        <ValidationInfo>{emailError}</ValidationInfo>
-        <UniversalInput 
-          label={'Hasło'}
-          secure={true}
-          value={password}
-          onChangeText={inputHandler(setPassword)}
-          placeholder={'Wpisz hasło...'}
-          placeholderTextColor={colors.lightGrey}
-        />
-        <ForgotPasswordContainer
-          onPress={goToForgotPasswordScreen}
-        >
-          <ForgotPassword>
-            Zapomniałeś hasła?
-          </ForgotPassword>
-        </ForgotPasswordContainer>
-        <ButtonContainer>
-          <RoundButton 
-            label={'Zaloguj się'}
-            onPress={() =>
-              FirebaseAuthService.signInWithEmailAndPassword(
-                email,
-                password,
-              )
-            }
-            background={colors.white}
-            textColor={colors.red}
-            border={colors.white}
+      <KeyboardAwareScrollView style={{flex: 1, height: 100, width: '100%'}}>
+        <TopBar>
+          <BackButton />
+          <Logo source={require('../../components/kropelka/kropelka.png')} />
+          <Header>Logowanie</Header>
+        </TopBar>
+        <Container>
+          <UniversalInput
+            label={'Adres email'}
+            secure={false}
+            value={email}
+            onChangeText={inputHandler(setEmail)}
+            placeholder={'Wpisz nazwę...'}
+            placeholderTextColor={colors.lightGrey}
           />
-        </ButtonContainer>
-      </Container>
+          <ValidationInfo>{emailError}</ValidationInfo>
+          <UniversalInput
+            label={'Hasło'}
+            secure={true}
+            value={password}
+            onChangeText={inputHandler(setPassword)}
+            placeholder={'Wpisz hasło...'}
+            placeholderTextColor={colors.lightGrey}
+          />
+          <ForgotPasswordContainer onPress={goToForgotPasswordScreen}>
+            <ForgotPassword>Zapomniałeś hasła?</ForgotPassword>
+          </ForgotPasswordContainer>
+          <ButtonContainer>
+            <RoundButton
+              label={'Zaloguj się'}
+              onPress={handleLogin}
+              background={colors.white}
+              textColor={colors.red}
+              border={colors.white}
+            />
+          </ButtonContainer>
+        </Container>
       </KeyboardAwareScrollView>
       <LeftBackground />
       <RightBackground />
     </Screen>
-  )
-}
+  );
+};
 
-export default LoginScreen
+export default LoginScreen;

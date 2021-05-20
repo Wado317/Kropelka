@@ -1,18 +1,17 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { Dimensions, Vibration, TextInput } from 'react-native';
-import { colors } from '../../const/colors';
-import { useNavigation } from '@react-navigation/native';
+/* eslint-disable react-native/no-inline-styles */
+import React, {useState, useCallback, useRef, useEffect} from 'react';
+import {Dimensions, Vibration, TextInput} from 'react-native';
+import {colors} from '../../const/colors';
 import styled from 'styled-components/native';
-import { Routes } from '../../const/routes';
-import { RoundButton } from '../../components/Button/Button';
-import { UniversalRedInput } from '../../components/UniversalInput/UniversalRedInput';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
+import {RoundButton} from '../../components/Button/Button';
+import {UniversalRedInput} from '../../components/UniversalInput/UniversalRedInput';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import TextValidator from '../../helpers/validators';
 import FirebaseAuthService from '../../services/FirebaseAuthService';
 import Toast from 'react-native-toast-message';
-import BackButton from '../../components/BackButton/BackButton'
+import BackButton from '../../components/BackButton/BackButton';
 
-const { height: screenHeight } = Dimensions.get('window');
+const {height: screenHeight} = Dimensions.get('window');
 
 const Screen = styled.SafeAreaView`
   flex: 1;
@@ -46,7 +45,7 @@ const Header = styled.Text`
   font-family: 'Megrim';
   font-size: 54px;
   color: ${colors.red};
-  margin-top: 30px
+  margin-top: 30px;
 `;
 
 const Container = styled.View`
@@ -76,15 +75,10 @@ const RegisterScreen = ({route}) => {
   const [passwordError, setPasswordError] = useState<string>('');
   const [password2Error, setPassword2Error] = useState<string>('');
   const [isFormValid, setIsFormValid] = useState(false);
-  const { name, selectedSex } = route.params;
+  const {name, gender, donatedBeforeRegistration} = route.params;
 
-  const navigation = useNavigation();
-  console.warn(name)
+  console.warn(name, gender, donatedBeforeRegistration);
 
-  const goToRegisterInfoScreenScreen = () => {
-    navigation.navigate(Routes.RegisterInfoScreen)
-  };
-  // dodanie loader-a na isLoading
   const inputHandler = useCallback(
     (handler: any) => (value: string): void => {
       handler(value);
@@ -98,7 +92,7 @@ const RegisterScreen = ({route}) => {
     if (!TextValidator.isEmail(email)) {
       setEmailError('Błędny adres email');
       isValid = false;
-      Vibration.vibrate()
+      Vibration.vibrate();
     } else {
       setEmailError('');
     }
@@ -119,34 +113,32 @@ const RegisterScreen = ({route}) => {
 
     setIsFormValid(isValid);
     return isValid;
-  }, [email, password, password2]);
+  }, [email, password, password2, passwordError]);
 
   const handleRegister = async () => {
     if (!validate()) {
       return;
     }
     try {
-      await FirebaseAuthService.signUpWithEmailAndPassword(email, password)
+      await FirebaseAuthService.signUpWithEmailAndPassword(email, password, {
+        additionalData: {name, gender},
+        data: {donatedBeforeRegistration},
+      });
       Toast.show({
         type: 'success',
         text1: 'Udało się!',
         text2: 'Twoje konto zostało utworzone!',
         topOffset: 50,
       });
-    } catch (error) {
-    };
+    } catch (error) {}
   };
 
   return (
     <Screen>
-      <KeyboardAwareScrollView style={{ width: '100%', height: 100 }}>
+      <KeyboardAwareScrollView style={{width: '100%', height: 100}}>
         <TopBar>
-          <Logo
-            source={require('../../components/kropelka/kropelka.png')}
-          />
-          <Header>
-            Rejestracja
-          </Header>
+          <Logo source={require('../../components/kropelka/kropelka.png')} />
+          <Header>Rejestracja</Header>
         </TopBar>
         <Container>
           <UniversalRedInput
@@ -157,6 +149,7 @@ const RegisterScreen = ({route}) => {
             placeholder={'Wpisz email...'}
             placeholderTextColor={colors.darkGrey}
             autoCapitalize={'none'}
+            keyboardType={'default'}
           />
           <ValidationInfo>{emailError}</ValidationInfo>
           <UniversalRedInput
@@ -167,6 +160,7 @@ const RegisterScreen = ({route}) => {
             placeholder={'Wpisz hasło...'}
             placeholderTextColor={colors.darkGrey}
             autoCapitalize={'none'}
+            keyboardType={'default'}
           />
           <ValidationInfo>{passwordError}</ValidationInfo>
           <UniversalRedInput
@@ -177,6 +171,7 @@ const RegisterScreen = ({route}) => {
             placeholder={'Wpisz hasło...'}
             placeholderTextColor={colors.darkGrey}
             autoCapitalize={'none'}
+            keyboardType={'default'}
           />
           <ValidationInfo>{password2Error}</ValidationInfo>
           <ButtonContainer>
@@ -190,14 +185,10 @@ const RegisterScreen = ({route}) => {
           </ButtonContainer>
         </Container>
       </KeyboardAwareScrollView>
-      <LeftScreen
-        source={require('../../../assets/images/LeftScreen.png')}
-      />
-      <RightScreen
-        source={require('../../../assets/images/RightScreen.png')}
-      />
+      <LeftScreen source={require('../../../assets/images/LeftScreen.png')} />
+      <RightScreen source={require('../../../assets/images/RightScreen.png')} />
     </Screen>
-  )
-}
+  );
+};
 
-export default RegisterScreen
+export default RegisterScreen;
