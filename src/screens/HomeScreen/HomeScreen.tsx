@@ -1,52 +1,57 @@
-import React, { useRef } from 'react'
-import { StyleSheet, Text, SafeAreaView, Image, Dimensions, View, Animated } from 'react-native'
-import { colors } from '../../const/colors'
-import { useNavigation } from '@react-navigation/native';
-import { Routes } from '../../const/routes';
+import React, {useRef} from 'react';
+import {
+  StyleSheet,
+  SafeAreaView,
+  Image,
+  Dimensions,
+  View,
+  Animated,
+} from 'react-native';
+import {colors} from '../../const/colors';
+import {useNavigation} from '@react-navigation/native';
+import {Routes} from '../../const/routes';
 
-const { width: screenWidth } = Dimensions.get('window');
-;
-
+const {width: screenWidth} = Dimensions.get('window');
 const HomeScreen = () => {
   const navigation = useNavigation();
 
   const goToIntroScreen = () => {
-    setTimeout(function(){
+    setTimeout(function () {
       navigation.navigate(Routes.IntroScreen);
     }, 4000);
-  }
+  };
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const fadeIn = () => {
     Animated.timing(fadeAnim, {
       delay: 1000,
       toValue: 1,
-      duration: 2000      
+      duration: 2000,
+      useNativeDriver: true,
     }).start();
   };
   fadeIn();
   goToIntroScreen();
 
   return (
-    <SafeAreaView style={styles.container}>  
+    <SafeAreaView style={styles.container}>
       <View style={styles.main}>
         <Animated.Image
-        style={[
-          styles.image,
-          {
-            opacity: fadeAnim
-          }
-        ]}
+          style={[
+            styles.image,
+            {
+              opacity: fadeAnim,
+            },
+          ]}
           source={require('../../components/kropelka/kropelka.png')}
-          />
-        <Animated.Text 
+        />
+        <Animated.Text
           style={[
             styles.header,
-             {
-               opacity: fadeAnim
-            }
-          ]}
-         >
+            {
+              opacity: fadeAnim,
+            },
+          ]}>
           KROPELKA
         </Animated.Text>
       </View>
@@ -55,8 +60,8 @@ const HomeScreen = () => {
         source={require('../../../assets/images/Bottom.png')}
       />
     </SafeAreaView>
-  )
-}
+  );
+};
 
 export default HomeScreen;
 

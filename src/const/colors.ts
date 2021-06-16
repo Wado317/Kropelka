@@ -17,6 +17,7 @@ export const colors = {
   red: 'rgb(236, 28, 36)',
   darkRed: 'rgb(200, 23, 29)',
   green: 'rgb(118, 194, 125)',
+  blue: 'rgb(30, 144 ,255)',
 
   shadowColor: 'rgba(0, 0, 0, 0.08)',
 

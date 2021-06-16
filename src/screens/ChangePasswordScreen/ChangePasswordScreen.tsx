@@ -1,16 +1,16 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { Dimensions, Vibration, TextInput } from 'react-native';
-import { colors } from '../../const/colors';
-import { useNavigation } from '@react-navigation/native';
+import React, {useState, useCallback, useRef, useEffect} from 'react';
+import {Dimensions, Vibration, TextInput} from 'react-native';
+import {colors} from '../../const/colors';
+import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components/native';
-import { Routes } from '../../const/routes';
-import { RoundButton } from '../../components/Button/Button';
-import { UniversalRedInput } from '../../components/UniversalInput/UniversalRedInput';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
+import {Routes} from '../../const/routes';
+import {RoundButton} from '../../components/Button/Button';
+import {UniversalRedInput} from '../../components/UniversalInput/UniversalRedInput';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import TextValidator from '../../helpers/validators';
 import FirebaseAuthService from '../../services/FirebaseAuthService';
 import Toast from 'react-native-toast-message';
-import BackButton from '../../components/BackButton/BackButton'
+import BackButton from '../../components/BackButton/BackButton';
 
 const Screen = styled.SafeAreaView`
   flex: 1;
@@ -32,7 +32,7 @@ const Header = styled.Text`
   font-family: 'Megrim';
   font-size: 54px;
   color: ${colors.red};
-  margin-top: 30px
+  margin-top: 30px;
 `;
 
 const Container = styled.View`
@@ -64,7 +64,7 @@ const ChangePasswordScreen = () => {
 
   const navigation = useNavigation();
 
-// dodanie loader-a na isLoading
+  // dodanie loader-a na isLoading
   const inputHandler = useCallback(
     (handler: any) => (value: string): void => {
       handler(value);
@@ -98,39 +98,34 @@ const ChangePasswordScreen = () => {
       return;
     }
     try {
-      await FirebaseAuthService.changePassword( newPassword, oldPassword );
-    }
-    catch (error) {
+      await FirebaseAuthService.changePassword(newPassword, oldPassword);
+    } catch (error) {
       console.warn(error);
-    };
+    }
     navigation.navigate(Routes.UserScreen);
   };
 
   return (
-    <Screen>  
-      <KeyboardAwareScrollView style= {{ width: '100%', height: 100 }}>
+    <Screen>
+      <KeyboardAwareScrollView style={{width: '100%', height: 100}}>
         <TopBar>
           <BackButton />
-          <Logo
-            source={require('../../components/kropelka/kropelka.png')}
-          />
-          <Header>
-            Zmiana hasła
-          </Header>
+          <Logo source={require('../../components/kropelka/kropelka.png')} />
+          <Header>Zmiana hasła</Header>
         </TopBar>
         <Container>
-          <UniversalRedInput 
+          <UniversalRedInput
             label={'Stare hasło'}
             secure={true}
             value={oldPassword}
             onChangeText={inputHandler(setOldPassword)}
             // animacja oddanej krwii
-            
+
             placeholder={'Wpisz stare hasło...'}
             placeholderTextColor={colors.darkGrey}
             autoCapitalize={'none'}
-            />
-          <UniversalRedInput 
+          />
+          <UniversalRedInput
             label={'Nowe hasło'}
             secure={true}
             value={newPassword}
@@ -138,9 +133,9 @@ const ChangePasswordScreen = () => {
             placeholder={'Wpisz nowe hasło...'}
             placeholderTextColor={colors.darkGrey}
             autoCapitalize={'none'}
-            />
+          />
           <ValidationInfo>{passwordError}</ValidationInfo>
-          <UniversalRedInput 
+          <UniversalRedInput
             label={'Powtórz nowe hasło'}
             secure={true}
             value={newPassword2}
@@ -148,10 +143,10 @@ const ChangePasswordScreen = () => {
             placeholder={'Wpisz nowe hasło...'}
             placeholderTextColor={colors.darkGrey}
             autoCapitalize={'none'}
-            />
+          />
           <ValidationInfo>{password2Error}</ValidationInfo>
           <ButtonContainer>
-            <RoundButton 
+            <RoundButton
               label={'Zmień hasło'}
               onPress={handlePasswordChange}
               background={colors.red}
@@ -162,7 +157,9 @@ const ChangePasswordScreen = () => {
         </Container>
       </KeyboardAwareScrollView>
     </Screen>
-  )
-}
+  );
+};
 
-export default ChangePasswordScreen
+
+
+export default ChangePasswordScreen;

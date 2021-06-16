@@ -1,12 +1,12 @@
-import React from 'react'
-import { Dimensions } from 'react-native'
-import { colors } from '../../const/colors'
-import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+import {Dimensions} from 'react-native';
+import {colors} from '../../const/colors';
+import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components/native';
-import { Routes } from '../../const/routes';
-import { RoundButton } from '../../components/Button/Button'
+import {Routes} from '../../const/routes';
+import {RoundButton} from '../../components/Button/Button';
 
-const { width: screenWidth } = Dimensions.get('window');
+const {width: screenWidth} = Dimensions.get('window');
 
 const Screen = styled.SafeAreaView`
   flex: 1;
@@ -68,29 +68,27 @@ const IntroScreen = () => {
   };
 
   return (
-    <Screen>  
+    <Screen>
       <Main>
-        <Logo
-          source={require('../../components/kropelka/kropelka.png')}
-        />
+        <Logo source={require('../../components/kropelka/kropelka.png')} />
         <Header>
-          <Title>
-            Cześć!
-          </Title>
+          <Title>Cześć!</Title>
           <Welcoming>
-            Kropelka jest aplikacją stworzoną dla honorowych dawców krwii w Krakowie. Jesteś już z nami, czy dopiero dołączasz do grona bohaterów?
+            Kropelka jest aplikacją stworzoną dla honorowych dawców krwii w
+            Krakowie. Jesteś już z nami, czy dopiero dołączasz do grona
+            bohaterów?
           </Welcoming>
         </Header>
       </Main>
       <ButtonsContainer>
-        <RoundButton 
+        <RoundButton
           label={'Załóż konto'}
           onPress={goToRegisterScreen}
           background={colors.white}
           textColor={colors.red}
           border={colors.red}
         />
-        <RoundButton 
+        <RoundButton
           label={'Zaloguj się'}
           onPress={goToLoginScreen}
           background={colors.red}
@@ -98,11 +96,9 @@ const IntroScreen = () => {
           border={colors.red}
         />
       </ButtonsContainer>
-      <BottomImage
-        source={require('../../../assets/images/Bottom.png')}
-      />
+      <BottomImage source={require('../../../assets/images/Bottom.png')} />
     </Screen>
-  )
-}
+  );
+};
 
 export default IntroScreen;

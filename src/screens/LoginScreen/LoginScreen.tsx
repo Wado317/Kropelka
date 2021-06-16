@@ -105,7 +105,7 @@ const LoginScreen = () => {
   // niepoprawny adres email i/lub haslo
   //      Vibration.vibrate()
 
-  const validate = useCallback((): boolean => {
+  const validate = useCallback((): any => {
     if (!TextValidator.isEmail(email)) {
       setEmailError('Niepoprawny adres email');
     } else {

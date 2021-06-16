@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/datetimepicker": "^3.5.2",
     "@react-native-firebase/app": "^11.1.2",
     "@react-native-firebase/auth": "^11.1.2",
     "@react-native-firebase/database": "^11.1.2",
@@ -24,6 +25,7 @@
     "react-native-date-picker": "^3.2.10",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-keyboard-aware-scrollview": "^2.1.0",
+    "react-native-modal-datetime-picker": "^10.0.0",
     "react-native-pager-view": "^5.1.1",
     "react-native-progress": "^4.1.2",
     "react-native-safe-area-context": "^3.2.0",
@@ -46,7 +48,7 @@
     "@types/react": "^17.0.5",
     "@types/react-native": "^0.64.5",
     "@types/react-test-renderer": "^17.0.1",
-    "@types/styled-components": "^5.1.9",
+    "@types/styled-components": "^5.1.10",
     "babel-jest": "^25.1.0",
     "eslint": "^6.5.1",
     "jest": "^25.1.0",

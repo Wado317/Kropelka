@@ -103,6 +103,10 @@ class UserSessionService {
   private async stop_observeUserData(userId: string) {
     return database().ref('users/').child(userId).off();
   }
+  /* ------------------ Public functions ----------------- */
+  public getUser() {
+    return this._firebase_auth_user;
+  }
 }
 
 export default UserSessionService;
