@@ -23,17 +23,19 @@ const InputTitle = styled.Text`
   margin-bottom: 10px;
 `;
 
-export const UniversalInput = ({ label, secure, value, placeholder, placeholderTextColor }) => {
+export const UniversalInput = ({ label, secure, value, placeholder, placeholderTextColor, onChangeText }) => {
   return (
     <Container>
       <InputTitle>
         {label}
       </InputTitle>
       <ChooseInput 
-        secureTextEntry={secure}
-        onChangeText={value}
-        placeholder={placeholder}
-        placeholderTextColor={placeholderTextColor}
+       secureTextEntry={secure}
+       value={value}
+       placeholder={placeholder}
+       placeholderTextColor={placeholderTextColor}
+       onChangeText={onChangeText}
+       autoCapitalize="none"
       />
       <InputBottom 
         source={require('../../../assets/images/Input.png')}
@@ -43,4 +45,3 @@ export const UniversalInput = ({ label, secure, value, placeholder, placeholderT
 }
 
 export default UniversalInput
-

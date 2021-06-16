@@ -6,8 +6,11 @@ export enum Routes {
   LoginScreen = 'LoginScreen',
   RegisterScreen = 'RegisterScreen',
   RegisterInfoScreen = 'RegisterInfoScreen',
-  ForgotPassScreen = 'ForgotPassScreen',
+  ForgotPasswordScreen = 'ForgotPasswordScreen',
   UserScreen = 'UserScreen',
   AccSettingsScreen = 'AccSettingsScreen',
-  ChangePassScreen = 'ChangePassScreen',
+  ChangePasswordScreen = 'ChangePasswordScreen',
+  RaportsScreen = 'RaportsScreen',
+  MainScreen = 'MainScreen',
+  SettingsStack = 'SettingsStack',
 }

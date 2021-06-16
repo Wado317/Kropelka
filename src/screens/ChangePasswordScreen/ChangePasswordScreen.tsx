@@ -1,8 +1,9 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, {useState, useCallback, useRef, useEffect} from 'react';
 import {Dimensions, Vibration, TextInput} from 'react-native';
 import {colors} from '../../const/colors';
+import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components/native';
+import {Routes} from '../../const/routes';
 import {RoundButton} from '../../components/Button/Button';
 import {UniversalRedInput} from '../../components/UniversalInput/UniversalRedInput';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
@@ -10,8 +11,6 @@ import TextValidator from '../../helpers/validators';
 import FirebaseAuthService from '../../services/FirebaseAuthService';
 import Toast from 'react-native-toast-message';
 import BackButton from '../../components/BackButton/BackButton';
-
-const {height: screenHeight} = Dimensions.get('window');
 
 const Screen = styled.SafeAreaView`
   flex: 1;
@@ -27,18 +26,6 @@ const TopBar = styled.View`
 const Logo = styled.Image`
   width: 80px;
   height: 106px;
-`;
-
-const LeftScreen = styled.Image`
-  position: absolute;
-  height: ${screenHeight}px;
-  left: 0;
-`;
-
-const RightScreen = styled.Image`
-  position: absolute;
-  height: ${screenHeight}px;
-  right: 0;
 `;
 
 const Header = styled.Text`
@@ -67,18 +54,17 @@ const ValidationInfo = styled.Text`
   margin-vertical: 5px;
 `;
 
-const RegisterScreen = ({route}) => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [password2, setPassword2] = useState<string>('');
-  const [emailError, setEmailError] = useState<string>('');
+const ChangePasswordScreen = () => {
+  const [oldPassword, setOldPassword] = useState<string>('');
+  const [newPassword, setNewPassword] = useState<string>('');
+  const [newPassword2, setNewPassword2] = useState<string>('');
   const [passwordError, setPasswordError] = useState<string>('');
   const [password2Error, setPassword2Error] = useState<string>('');
   const [isFormValid, setIsFormValid] = useState(false);
-  const {name, gender, donatedBeforeRegistration} = route.params;
 
-  console.warn(name, gender, donatedBeforeRegistration);
+  const navigation = useNavigation();
 
+  // dodanie loader-a na isLoading
   const inputHandler = useCallback(
     (handler: any) => (value: string): void => {
       handler(value);
@@ -89,22 +75,14 @@ const RegisterScreen = ({route}) => {
   const validate = useCallback((): boolean => {
     let isValid = true;
 
-    if (!TextValidator.isEmail(email)) {
-      setEmailError('Błędny adres email');
-      isValid = false;
-      Vibration.vibrate();
-    } else {
-      setEmailError('');
-    }
-
-    if (!TextValidator.isCorrectPassword(password)) {
+    if (!TextValidator.isCorrectPassword(newPassword)) {
       isValid = false;
       setPasswordError('Wymagane 6 znaków, wielka litera oraz cyfra.');
     } else {
       passwordError && setPasswordError('');
     }
 
-    if (password !== password2) {
+    if (newPassword !== newPassword2) {
       setPassword2Error('Błędnie powtórzone hasło.');
       isValid = false;
     } else {
@@ -113,71 +91,64 @@ const RegisterScreen = ({route}) => {
 
     setIsFormValid(isValid);
     return isValid;
-  }, [email, password, password2, passwordError]);
+  }, [newPassword, newPassword2]);
 
-  const handleRegister = async () => {
+  const handlePasswordChange = async () => {
     if (!validate()) {
       return;
     }
     try {
-      await FirebaseAuthService.signUpWithEmailAndPassword(email, password, {
-        additionalData: {name, gender},
-        data: {donatedBeforeRegistration},
-      });
-      Toast.show({
-        type: 'success',
-        text1: 'Udało się!',
-        text2: 'Twoje konto zostało utworzone!',
-        topOffset: 50,
-      });
-    } catch (error) {}
+      await FirebaseAuthService.changePassword(newPassword, oldPassword);
+    } catch (error) {
+      console.warn(error);
+    }
+    navigation.navigate(Routes.UserScreen);
   };
 
   return (
     <Screen>
       <KeyboardAwareScrollView style={{width: '100%', height: 100}}>
         <TopBar>
+          <BackButton />
           <Logo source={require('../../components/kropelka/kropelka.png')} />
-          <Header>Rejestracja</Header>
+          <Header>Zmiana hasła</Header>
         </TopBar>
         <Container>
           <UniversalRedInput
-            label={'Adres email'}
-            secure={false}
-            value={email}
-            onChangeText={inputHandler(setEmail)}
-            placeholder={'Wpisz email...'}
-            placeholderTextColor={colors.darkGrey}
-            autoCapitalize={'none'}
-            keyboardType={'default'}
-          />
-          <ValidationInfo>{emailError}</ValidationInfo>
-          <UniversalRedInput
-            label={'Hasło'}
+            label={'Stare hasło'}
             secure={true}
-            value={password}
-            onChangeText={inputHandler(setPassword)}
-            placeholder={'Wpisz hasło...'}
+            value={oldPassword}
+            onChangeText={inputHandler(setOldPassword)}
+            // animacja oddanej krwii
+
+            placeholder={'Wpisz stare hasło...'}
             placeholderTextColor={colors.darkGrey}
             autoCapitalize={'none'}
-            keyboardType={'default'}
+          />
+          <UniversalRedInput
+            label={'Nowe hasło'}
+            secure={true}
+            value={newPassword}
+            onChangeText={inputHandler(setNewPassword)}
+            placeholder={'Wpisz nowe hasło...'}
+            placeholderTextColor={colors.darkGrey}
+            autoCapitalize={'none'}
           />
           <ValidationInfo>{passwordError}</ValidationInfo>
           <UniversalRedInput
-            label={'Powtórz hasło'}
+            label={'Powtórz nowe hasło'}
             secure={true}
-            value={password2}
-            onChangeText={inputHandler(setPassword2)}
-            placeholder={'Wpisz hasło...'}
+            value={newPassword2}
+            onChangeText={inputHandler(setNewPassword2)}
+            placeholder={'Wpisz nowe hasło...'}
             placeholderTextColor={colors.darkGrey}
             autoCapitalize={'none'}
-            keyboardType={'default'}
           />
           <ValidationInfo>{password2Error}</ValidationInfo>
           <ButtonContainer>
             <RoundButton
-              label={'Przejdź dalej'}
-              onPress={handleRegister}
+              label={'Zmień hasło'}
+              onPress={handlePasswordChange}
               background={colors.red}
               textColor={colors.white}
               border={colors.white}
@@ -185,10 +156,10 @@ const RegisterScreen = ({route}) => {
           </ButtonContainer>
         </Container>
       </KeyboardAwareScrollView>
-      <LeftScreen source={require('../../../assets/images/LeftScreen.png')} />
-      <RightScreen source={require('../../../assets/images/RightScreen.png')} />
     </Screen>
   );
 };
 
-export default RegisterScreen;
+
+
+export default ChangePasswordScreen;

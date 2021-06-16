@@ -1,7 +1,5 @@
 PODS:
   - boost-for-react-native (1.63.0)
-  - CocoaAsyncSocket (7.6.5)
-  - CocoaLibEvent (1.0.0)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.63.4)
   - FBReactNativeSpec (0.63.4):
@@ -16,6 +14,9 @@ PODS:
     - FirebaseAuth (~> 7.8.0)
   - Firebase/CoreOnly (7.8.1):
     - FirebaseCore (= 7.8.0)
+  - Firebase/Database (7.8.1):
+    - Firebase/CoreOnly
+    - FirebaseDatabase (~> 7.8.0)
   - FirebaseAuth (7.8.0):
     - FirebaseCore (~> 7.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
@@ -30,52 +31,9 @@ PODS:
     - GoogleUtilities/Environment (~> 7.0)
     - GoogleUtilities/Logger (~> 7.0)
     - nanopb (~> 2.30907.0)
-  - Flipper (0.54.0):
-    - Flipper-Folly (~> 2.2)
-    - Flipper-RSocket (~> 1.1)
-  - Flipper-DoubleConversion (1.1.7)
-  - Flipper-Folly (2.3.0):
-    - boost-for-react-native
-    - CocoaLibEvent (~> 1.0)
-    - Flipper-DoubleConversion
-    - Flipper-Glog
-    - OpenSSL-Universal (= 1.0.2.20)
-  - Flipper-Glog (0.3.6)
-  - Flipper-PeerTalk (0.0.4)
-  - Flipper-RSocket (1.1.1):
-    - Flipper-Folly (~> 2.3)
-  - FlipperKit (0.54.0):
-    - FlipperKit/Core (= 0.54.0)
-  - FlipperKit/Core (0.54.0):
-    - Flipper (~> 0.54.0)
-    - FlipperKit/CppBridge
-    - FlipperKit/FBCxxFollyDynamicConvert
-    - FlipperKit/FBDefines
-    - FlipperKit/FKPortForwarding
-  - FlipperKit/CppBridge (0.54.0):
-    - Flipper (~> 0.54.0)
-  - FlipperKit/FBCxxFollyDynamicConvert (0.54.0):
-    - Flipper-Folly (~> 2.2)
-  - FlipperKit/FBDefines (0.54.0)
-  - FlipperKit/FKPortForwarding (0.54.0):
-    - CocoaAsyncSocket (~> 7.6)
-    - Flipper-PeerTalk (~> 0.0.4)
-  - FlipperKit/FlipperKitHighlightOverlay (0.54.0)
-  - FlipperKit/FlipperKitLayoutPlugin (0.54.0):
-    - FlipperKit/Core
-    - FlipperKit/FlipperKitHighlightOverlay
-    - FlipperKit/FlipperKitLayoutTextSearchable
-    - YogaKit (~> 1.18)
-  - FlipperKit/FlipperKitLayoutTextSearchable (0.54.0)
-  - FlipperKit/FlipperKitNetworkPlugin (0.54.0):
-    - FlipperKit/Core
-  - FlipperKit/FlipperKitReactPlugin (0.54.0):
-    - FlipperKit/Core
-  - FlipperKit/FlipperKitUserDefaultsPlugin (0.54.0):
-    - FlipperKit/Core
-  - FlipperKit/SKIOSNetworkPlugin (0.54.0):
-    - FlipperKit/Core
-    - FlipperKit/FlipperKitNetworkPlugin
+  - FirebaseDatabase (7.8.0):
+    - FirebaseCore (~> 7.0)
+    - leveldb-library (~> 1.22)
   - Folly (2020.01.13.00):
     - boost-for-react-native
     - DoubleConversion
@@ -106,14 +64,12 @@ PODS:
   - GoogleUtilities/Reachability (7.3.1):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.5.0)
+  - leveldb-library (1.22.1)
   - nanopb (2.30907.0):
     - nanopb/decode (= 2.30907.0)
     - nanopb/encode (= 2.30907.0)
   - nanopb/decode (2.30907.0)
   - nanopb/encode (2.30907.0)
-  - OpenSSL-Universal (1.0.2.20):
-    - OpenSSL-Universal/Static (= 1.0.2.20)
-  - OpenSSL-Universal/Static (1.0.2.20)
   - PromisesObjC (1.2.12)
   - RCTRequired (0.63.4)
   - RCTTypeSafety (0.63.4):
@@ -349,6 +305,8 @@ PODS:
     - React-jsi (= 0.63.4)
   - RNCPicker (1.9.12):
     - React-Core
+  - RNDateTimePicker (3.5.2):
+    - React-Core
   - RNFBApp (11.1.2):
     - Firebase/CoreOnly (= 7.8.1)
     - React-Core
@@ -356,35 +314,24 @@ PODS:
     - Firebase/Auth (= 7.8.1)
     - React-Core
     - RNFBApp
+  - RNFBDatabase (11.1.2):
+    - Firebase/Database (= 7.8.1)
+    - React-Core
+    - RNFBApp
   - RNGestureHandler (1.10.3):
     - React-Core
+  - RNScreens (3.1.0):
+    - React-Core
+  - RNShare (5.3.0):
+    - React-Core
+  - RNSVG (12.1.0):
+    - React
   - Yoga (1.14.0)
-  - YogaKit (1.18.1):
-    - Yoga (~> 1.14)
 
 DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
-  - Flipper (~> 0.54.0)
-  - Flipper-DoubleConversion (= 1.1.7)
-  - Flipper-Folly (= 2.3.0)
-  - Flipper-Glog (= 0.3.6)
-  - Flipper-PeerTalk (~> 0.0.4)
-  - Flipper-RSocket (~> 1.1)
-  - FlipperKit (~> 0.54.0)
-  - FlipperKit/Core (~> 0.54.0)
-  - FlipperKit/CppBridge (~> 0.54.0)
-  - FlipperKit/FBCxxFollyDynamicConvert (~> 0.54.0)
-  - FlipperKit/FBDefines (~> 0.54.0)
-  - FlipperKit/FKPortForwarding (~> 0.54.0)
-  - FlipperKit/FlipperKitHighlightOverlay (~> 0.54.0)
-  - FlipperKit/FlipperKitLayoutPlugin (~> 0.54.0)
-  - FlipperKit/FlipperKitLayoutTextSearchable (~> 0.54.0)
-  - FlipperKit/FlipperKitNetworkPlugin (~> 0.54.0)
-  - FlipperKit/FlipperKitReactPlugin (~> 0.54.0)
-  - FlipperKit/FlipperKitUserDefaultsPlugin (~> 0.54.0)
-  - FlipperKit/SKIOSNetworkPlugin (~> 0.54.0)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
@@ -413,34 +360,30 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
+  - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker`)"
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
+  - "RNFBDatabase (from `../node_modules/@react-native-firebase/database`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNScreens (from `../node_modules/react-native-screens`)
+  - RNShare (from `../node_modules/react-native-share`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
     - boost-for-react-native
-    - CocoaAsyncSocket
-    - CocoaLibEvent
     - Firebase
     - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreDiagnostics
-    - Flipper
-    - Flipper-DoubleConversion
-    - Flipper-Folly
-    - Flipper-Glog
-    - Flipper-PeerTalk
-    - Flipper-RSocket
-    - FlipperKit
+    - FirebaseDatabase
     - GoogleDataTransport
     - GoogleUtilities
     - GTMSessionFetcher
+    - leveldb-library
     - nanopb
-    - OpenSSL-Universal
     - PromisesObjC
-    - YogaKit
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -501,19 +444,27 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNCPicker:
     :path: "../node_modules/@react-native-picker/picker"
+  RNDateTimePicker:
+    :path: "../node_modules/@react-native-community/datetimepicker"
   RNFBApp:
     :path: "../node_modules/@react-native-firebase/app"
   RNFBAuth:
     :path: "../node_modules/@react-native-firebase/auth"
+  RNFBDatabase:
+    :path: "../node_modules/@react-native-firebase/database"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNScreens:
+    :path: "../node_modules/react-native-screens"
+  RNShare:
+    :path: "../node_modules/react-native-share"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
-  CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
-  CocoaLibEvent: 2fab71b8bd46dd33ddb959f7928ec5909f838e3f
   DoubleConversion: cde416483dac037923206447da6e1454df403714
   FBLazyVector: 3bb422f41b18121b71783a905c10e58606f7dc3e
   FBReactNativeSpec: f2c97f2529dd79c083355182cc158c9f98f4bd6e
@@ -521,20 +472,14 @@ SPEC CHECKSUMS:
   FirebaseAuth: 667e576a716f6f9fe31687791406f61135002d47
   FirebaseCore: 049029df3096e5c118917029be7da75ee16f3b1b
   FirebaseCoreDiagnostics: 066f996579cf097bdad3d7dc9a918d6b9e129c50
-  Flipper: be611d4b742d8c87fbae2ca5f44603a02539e365
-  Flipper-DoubleConversion: 38631e41ef4f9b12861c67d17cb5518d06badc41
-  Flipper-Folly: e4493b013c02d9347d5e0cb4d128680239f6c78a
-  Flipper-Glog: 1dfd6abf1e922806c52ceb8701a3599a79a200a6
-  Flipper-PeerTalk: 116d8f857dc6ef55c7a5a75ea3ceaafe878aadc9
-  Flipper-RSocket: a3acb8812d6adf127deb0a5edae2793b97e6b641
-  FlipperKit: ab353d41aea8aae2ea6daaf813e67496642f3d7d
+  FirebaseDatabase: f909d1448d4e7c4f5ef5acd1b8095f4bea9813ca
   Folly: b73c3869541e86821df3c387eb0af5f65addfab4
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
   GoogleDataTransport: b006084b73915a42c28a3466961a4edda3065da6
   GoogleUtilities: e1d9ed4e544fc32a93e00e721400cbc3f377200d
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
+  leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
-  OpenSSL-Universal: ff34003318d5e1163e9529b08470708e389ffcdd
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   RCTRequired: 082f10cd3f905d6c124597fd1c14f6f2655ff65e
   RCTTypeSafety: 8c9c544ecbf20337d069e4ae7fd9a377aadf504b
@@ -560,12 +505,16 @@ SPEC CHECKSUMS:
   React-RCTVibration: ae4f914cfe8de7d4de95ae1ea6cc8f6315d73d9d
   ReactCommon: 73d79c7039f473b76db6ff7c6b159c478acbbb3b
   RNCPicker: b1e22287e5feb38fb10cac877753b924ba1c05d1
+  RNDateTimePicker: 7658208086d86d09e1627b5c34ba0cf237c60140
   RNFBApp: bb830cc7f7598e46437b833adc841df345e19e2f
   RNFBAuth: d011f1b1a066a8bceba63c42369de9c5ce68de5e
+  RNFBDatabase: e8b27072d2aa305fea14e7478d8ba967b6042993
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
+  RNScreens: 3ba2198ca3179f77f6158425fc31ba3c90a0d49f
+  RNShare: 4df87d1791f50a2c7b1d89432fb9bbb7c02a9c9a
+  RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
-  YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 123bcd64b305bad8ccab8b30a3d18cd0b9cb875f
+PODFILE CHECKSUM: 3bac8957557d61ff96d1265bfcc092f288d318da
 
 COCOAPODS: 1.10.1

@@ -10,32 +10,51 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/datetimepicker": "^3.5.2",
     "@react-native-firebase/app": "^11.1.2",
     "@react-native-firebase/auth": "^11.1.2",
+    "@react-native-firebase/database": "^11.1.2",
     "@react-native-picker/picker": "^1.9.12",
+    "@react-navigation/bottom-tabs": "^5.11.9",
     "@react-navigation/native": "^5.9.3",
     "@react-navigation/stack": "^5.14.3",
+    "@types/react-native-snap-carousel": "^3.8.2",
+    "moment": "^2.29.1",
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-date-picker": "^3.2.10",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-keyboard-aware-scrollview": "^2.1.0",
+    "react-native-modal-datetime-picker": "^10.0.0",
     "react-native-pager-view": "^5.1.1",
+    "react-native-progress": "^4.1.2",
     "react-native-safe-area-context": "^3.2.0",
+    "react-native-screens": "^3.1.0",
+    "react-native-share": "^5.2.2",
+    "react-native-snap-carousel": "^3.9.1",
+    "react-native-svg": "^12.1.0",
+    "react-native-switch-selector": "^2.1.4",
     "react-native-toast-message": "^1.4.9",
     "react-redux": "^7.2.2",
     "redux": "^4.0.5",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "use-count-up": "^2.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@babel/runtime": "^7.8.4",
     "@react-native-community/eslint-config": "^1.1.0",
+    "@types/jest": "^26.0.23",
+    "@types/react": "^17.0.5",
+    "@types/react-native": "^0.64.5",
+    "@types/react-test-renderer": "^17.0.1",
+    "@types/styled-components": "^5.1.10",
     "babel-jest": "^25.1.0",
     "eslint": "^6.5.1",
     "jest": "^25.1.0",
     "metro-react-native-babel-preset": "^0.59.0",
-    "react-test-renderer": "16.13.1"
+    "react-test-renderer": "16.13.1",
+    "typescript": "^4.2.4"
   },
   "jest": {
     "preset": "react-native"

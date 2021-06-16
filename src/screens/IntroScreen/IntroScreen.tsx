@@ -1,12 +1,12 @@
-import React from 'react'
-import { Dimensions } from 'react-native'
-import { colors } from '../../const/colors'
-import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+import {Dimensions} from 'react-native';
+import {colors} from '../../const/colors';
+import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components/native';
-import { Routes } from '../../const/routes';
-import { RoundButton } from '../../components/Button/Button'
+import {Routes} from '../../const/routes';
+import {RoundButton} from '../../components/Button/Button';
 
-const { width: screenWidth } = Dimensions.get('window');
+const {width: screenWidth} = Dimensions.get('window');
 
 const Screen = styled.SafeAreaView`
   flex: 1;
@@ -59,50 +59,46 @@ const ButtonsContainer = styled.View`
 const IntroScreen = () => {
   const navigation = useNavigation();
 
-const goToLoginScreen = () => {
-  navigation.navigate(Routes.LoginScreen);
-};
+  const goToLoginScreen = () => {
+    navigation.navigate(Routes.LoginScreen);
+  };
 
-const goToRegisterScreen = () => {
-  navigation.navigate(Routes.RegisterScreen);
-};
+  const goToRegisterScreen = () => {
+    navigation.navigate(Routes.RegisterInfoScreen);
+  };
 
-return (
-  <Screen>  
-    <Main>
-      <Logo
-        source={require('../../components/kropelka/kropelka.png')}
-      />
-      <Header>
-        <Title>
-          Cześć!
-        </Title>
-        <Welcoming>
-          Kropelka jest aplikacją stworzoną dla honorowych dawców krwii w Krakowie. Jesteś już z nami, czy dopiero dołączasz do grona bohaterów?
-        </Welcoming>
-      </Header>
-    </Main>
-    <ButtonsContainer>
-      <RoundButton 
-        label={'Załóż konto'}
-        onPress={goToRegisterScreen}
-        background={colors.white}
-        textColor={colors.red}
-        border={colors.red}
-      />
-      <RoundButton 
-        label={'Zaloguj się'}
-        onPress={goToLoginScreen}
-        background={colors.red}
-        textColor={colors.white}
-        border={colors.red}
-      />
-    </ButtonsContainer>
-    <BottomImage
-      source={require('../../../assets/images/Bottom.png')}
-    />
-  </Screen>
-  )
-}
+  return (
+    <Screen>
+      <Main>
+        <Logo source={require('../../components/kropelka/kropelka.png')} />
+        <Header>
+          <Title>Cześć!</Title>
+          <Welcoming>
+            Kropelka jest aplikacją stworzoną dla honorowych dawców krwii w
+            Krakowie. Jesteś już z nami, czy dopiero dołączasz do grona
+            bohaterów?
+          </Welcoming>
+        </Header>
+      </Main>
+      <ButtonsContainer>
+        <RoundButton
+          label={'Załóż konto'}
+          onPress={goToRegisterScreen}
+          background={colors.white}
+          textColor={colors.red}
+          border={colors.red}
+        />
+        <RoundButton
+          label={'Zaloguj się'}
+          onPress={goToLoginScreen}
+          background={colors.red}
+          textColor={colors.white}
+          border={colors.red}
+        />
+      </ButtonsContainer>
+      <BottomImage source={require('../../../assets/images/Bottom.png')} />
+    </Screen>
+  );
+};
 
 export default IntroScreen;
