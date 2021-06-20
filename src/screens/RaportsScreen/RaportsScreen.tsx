@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import {colors} from '../../const/colors';
-import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components/native';
-import {Routes} from '../../const/routes';
 import {data} from '../../helpers/data';
 
 const Screen = styled.SafeAreaView`
@@ -57,7 +55,7 @@ const DataInfo = styled.Text`
 `;
 
 const RaportsScreen = () => {
-  const [visits, setVisits] = useState(data);
+  const [visits] = useState(data);
   const List = ({visits}) => {
     return (
       <>

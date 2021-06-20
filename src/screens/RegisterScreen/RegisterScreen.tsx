@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState, useCallback, useRef, useEffect} from 'react';
-import {Dimensions, Vibration, TextInput} from 'react-native';
+import React, {useState, useCallback} from 'react';
+import {Dimensions, Vibration} from 'react-native';
 import {colors} from '../../const/colors';
 import styled from 'styled-components/native';
 import {RoundButton} from '../../components/Button/Button';
@@ -9,7 +9,6 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import TextValidator from '../../helpers/validators';
 import FirebaseAuthService from '../../services/FirebaseAuthService';
 import Toast from 'react-native-toast-message';
-import BackButton from '../../components/BackButton/BackButton';
 
 const {height: screenHeight} = Dimensions.get('window');
 
@@ -74,7 +73,7 @@ const RegisterScreen = ({route}) => {
   const [emailError, setEmailError] = useState<string>('');
   const [passwordError, setPasswordError] = useState<string>('');
   const [password2Error, setPassword2Error] = useState<string>('');
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [setIsFormValid] = useState(false);
   const {name, gender, donatedBeforeRegistration} = route.params;
 
   console.warn(name, gender, donatedBeforeRegistration);
@@ -113,6 +112,7 @@ const RegisterScreen = ({route}) => {
 
     setIsFormValid(isValid);
     return isValid;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [email, password, password2, passwordError]);
 
   const handleRegister = async () => {

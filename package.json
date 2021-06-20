@@ -49,6 +49,7 @@
     "@types/react-native": "^0.64.5",
     "@types/react-test-renderer": "^17.0.1",
     "@types/styled-components": "^5.1.10",
+    "@types/styled-components-react-native": "^5.1.1",
     "babel-jest": "^25.1.0",
     "eslint": "^6.5.1",
     "jest": "^25.1.0",

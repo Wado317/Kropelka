@@ -75,7 +75,10 @@ const ButtonContainer = styled.View`
 const RegisterInfoScreen = () => {
   const [name, setName] = useState<string>('');
   const [gender, setGender] = useState<string>('');
-  const [donatedBeforeRegistration, setDonatedBeforeRegistration] = useState<string>('');
+  const [
+    donatedBeforeRegistration,
+    setDonatedBeforeRegistration,
+  ] = useState<string>('');
 
   const navigation = useNavigation();
 
