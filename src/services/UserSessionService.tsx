@@ -1,4 +1,3 @@
-import React from 'react';
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
 

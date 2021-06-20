@@ -1,5 +1,4 @@
-import React, {useState, useCallback, useRef, useEffect} from 'react';
-import {Dimensions, Vibration, TextInput} from 'react-native';
+import React, {useState, useCallback} from 'react';
 import {colors} from '../../const/colors';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components/native';
@@ -9,7 +8,6 @@ import {UniversalRedInput} from '../../components/UniversalInput/UniversalRedInp
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import TextValidator from '../../helpers/validators';
 import FirebaseAuthService from '../../services/FirebaseAuthService';
-import Toast from 'react-native-toast-message';
 import BackButton from '../../components/BackButton/BackButton';
 
 const Screen = styled.SafeAreaView`
@@ -91,6 +89,7 @@ const ChangePasswordScreen = () => {
 
     setIsFormValid(isValid);
     return isValid;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newPassword, newPassword2]);
 
   const handlePasswordChange = async () => {
@@ -119,11 +118,10 @@ const ChangePasswordScreen = () => {
             secure={true}
             value={oldPassword}
             onChangeText={inputHandler(setOldPassword)}
-            // animacja oddanej krwii
-
             placeholder={'Wpisz stare hasło...'}
             placeholderTextColor={colors.darkGrey}
             autoCapitalize={'none'}
+            keyboardType={'none'}
           />
           <UniversalRedInput
             label={'Nowe hasło'}
@@ -133,6 +131,7 @@ const ChangePasswordScreen = () => {
             placeholder={'Wpisz nowe hasło...'}
             placeholderTextColor={colors.darkGrey}
             autoCapitalize={'none'}
+            keyboardType={'none'}
           />
           <ValidationInfo>{passwordError}</ValidationInfo>
           <UniversalRedInput
@@ -143,6 +142,7 @@ const ChangePasswordScreen = () => {
             placeholder={'Wpisz nowe hasło...'}
             placeholderTextColor={colors.darkGrey}
             autoCapitalize={'none'}
+            keyboardType={'none'}
           />
           <ValidationInfo>{password2Error}</ValidationInfo>
           <ButtonContainer>
@@ -159,7 +159,5 @@ const ChangePasswordScreen = () => {
     </Screen>
   );
 };
-
-
 
 export default ChangePasswordScreen;
