@@ -1,0 +1,113 @@
+{
+  "home": {
+    "welcome": "Dzień dobry",
+    "title": "Twoja krew ratuje życie!",
+    "subtitle": "Dziękujemy, że jesteś. Kropelka ułatwi Ci wizyty w centrum krwiodawstwa.",
+    "logIn": "Zaloguj się",
+    "doNotHaveAccount": "Nie masz jeszcze konta?",
+    "register": "Zarejestruj się"
+  },
+  "register": {
+    "header": "Logowanie",
+    "email": "Email",
+    "password": "Hasło",
+    "repeatPassword": "Powtórz hasło",
+    "enterEmail": "Wpisz adres email...",
+    "enterName": "Wpisz swoje imię...",
+    "enterPassword": "Wpisz swoje hasło...",
+    "enterRepeatPassword": "Powtórz swoje hasło...",
+    "emailValidation": "Niepoprawny adres email",
+    "validation": "Wymagane 8 znaków, wielka litera oraz cyfra.",
+    "repeatValidation": "Błędnie powtórzone hasło.",
+    "createAccount": "Załóż konto!"
+  },
+  "signIn": {
+    "header": "Logowanie",
+    "email": "Email",
+    "password": "Hasło",
+    "enterEmail": "Wpisz email...",
+    "enterPassword": "Wpisz hasło...",
+    "forgotPassword": "Zapomniałem hasła",
+    "validation": "Wprowadzone dane są nieprawidłowe",
+    "logIn": "Zaloguj się!",
+    "doNotHaveAccount": "Nie masz jeszcze konta?",
+    "register": "Zarejestruj się"
+  },
+  "forgotPasswordScreen": {
+    "header": "Resetowanie hasła",
+    "email": "Adres email",
+    "enterEmail": "Wpisz adres email...",
+    "validation": "Niepoprawny adres email",
+    "resetPassword": "Zresetuj hasło!"
+  },
+  "changeLanguageScreen": {
+    "header": "Wybierz język"
+  },
+  "homeScreen": {
+    "header": "Zapraszamy ponownie za:",
+    "days": "dni",
+    "add": "Dodaj +",
+    "donation": "Data donacji",
+    "enterDonation": "Wpisz datę donacji...",
+    "modalHeader": "Donacja!",
+    "confirm": "Potwiedź",
+    "cancel": "Anuluj",
+    "placeholder": "Dodaj swoją pierwszą donację!",
+    "delete": "Usuń donację",
+    "confirmation": "Jesteś pewny/a?",
+    "yes": "Tak",
+    "editHeader": "Edycja donacji",
+    "blood": "Krew:",
+    "yourDonations": "Twoje donacje:"
+  },
+  "userScreen": {
+    "welcome": "Cześć Kamil!",
+    "settings": "Ustawienia",
+    "language": "Język",
+    "share": "Udostępnij",
+    "logOut": "Wyloguj się"
+  },
+  "accountSettingsScreen": {
+    "settings": "Ustawienia",
+    "changeEmail": "Zmień email",
+    "changePassword": "Zmień hasło",
+    "changeName": "Zmień imię",
+    "deleteAccount": "Usuń konto"
+  },
+  "changeEmailScreen": {
+    "header": "Zmiana emaila",
+    "oldEmail": "Stary adres email",
+    "email": "Nowy adres email",
+    "enterOldEmail": "Wpisz stary adres email...",
+    "enterEmail": "Wpisz nowy adres email...",
+    "validation": "Niepoprawny adres email",
+    "change": "Zmień email!"
+  },
+  "changePasswordScreen": {
+    "header": "Zmiana hasła",
+    "password": "Stare hasło",
+    "newPassword": "Nowe hasło",
+    "repeatNewPassword": "Powtórzone nowe haslo",
+    "enterPassword": "Wpisz stare hasło...",
+    "enterNewPassword": "Wpisz nowe hasło...",
+    "enterRepeatedNewPassword": "Powtórz nowe hasło...",
+    "validation": "Wymagane 8 znaków, wielka litera oraz cyfra.",
+    "repeatValidation": "Błędnie powtórzone hasło.",
+    "change": "Zmień hasło!"
+  },
+  "changeNameScreen": {
+    "header": "Zmiana imienia",
+    "name": "Twoje imię",
+    "enterName": "Wpisz swoje imię...",
+    "change": "Zmień imię!"
+  },
+  "deleteAccountScreen": {
+    "header": "Usuwanie konta",
+    "email": "Adres email",
+    "password": "Wpisz hasło",
+    "enterEmail": "Wpisz adres email...",
+    "enterPassword": "Wpisz swoje hasło...",
+    "validation": "Niepoprawny adres email",
+    "delete": "Usuń konto!"
+  }
+}

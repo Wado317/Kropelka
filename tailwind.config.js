@@ -3,6 +3,8 @@ module.exports = {
     "./App.{js,jsx,ts,tsx}",
     "./src/screens/**/*.{js,jsx,ts,tsx}",
     "./src/components/**/*.{js,jsx,ts,tsx}",
+    "./src/language/**/*.{js,jsx,ts,tsx}",
+    "./src/constans/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     colors: {
@@ -13,7 +15,7 @@ module.exports = {
       gray: "#C4C4C4",
     },
     fontFamily: {
-      primary: ["Poppins", "sans-serif"],
+      primary: ["BakbakOne"],
     },
     extend: {
       fontFamily: {

@@ -6,6 +6,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
+import ChangeLanguage from "@screens/ChangeLanguage";
+import SignIn from "@screens/SignIn";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -38,6 +40,8 @@ export default function App() {
           initialRouteName="Home"
         >
           <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="ChangeLanguage" component={ChangeLanguage} />
+          <Stack.Screen name="SignIn" component={SignIn} />
         </Stack.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />
