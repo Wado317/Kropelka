@@ -19,7 +19,7 @@
     "doNotHaveAccount": "Ще не маєте облікового запису?",
     "register": "Зареєструватися"
   },
-  "registerScreen": {
+  "register": {
     "header": "Registration",
     "email": "Email adress",
     "name": "Your name",

@@ -2,11 +2,11 @@ export enum Routes {
   HomeScreen = "HomeScreen",
   ChangeLanguageScreen = "ChangeLanguage",
   SignInScreen = "SignIn",
+  RegisterScreen = "Register",
 
   WelcomeScreen = "WelcomeScreen",
   LoggedInStack = "LoggedInStack",
   LoginScreen = "LoginScreen",
-  RegisterScreen = "RegisterScreen",
   RegisterInfoScreen = "RegisterInfoScreen",
   ForgotPasswordScreen = "ForgotPasswordScreen",
   UserScreen = "UserScreen",

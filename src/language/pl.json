@@ -8,18 +8,22 @@
     "register": "Zarejestruj się"
   },
   "register": {
-    "header": "Logowanie",
+    "header": "Rejestracja",
     "email": "Email",
+    "emailValidation": "Błedny format adresu email",
     "password": "Hasło",
     "repeatPassword": "Powtórz hasło",
+    "passwordValidation": "Wymagane 8 znaków, wielka litera oraz cyfra",
+    "repeatPasswordValidation": "Błędnie powtórzone hasło.",
     "enterEmail": "Wpisz adres email...",
     "enterName": "Wpisz swoje imię...",
-    "enterPassword": "Wpisz swoje hasło...",
-    "enterRepeatPassword": "Powtórz swoje hasło...",
-    "emailValidation": "Niepoprawny adres email",
     "validation": "Wymagane 8 znaków, wielka litera oraz cyfra.",
     "repeatValidation": "Błędnie powtórzone hasło.",
-    "createAccount": "Załóż konto!"
+    "createAccount": "Stwórz konto",
+    "female": "Kobieta",
+    "male": "Mężczyzna",
+    "gender": "Płeć",
+    "genderValidation": "Prosimy wybrać jedną z opcji, jest to niezbędne do obliczeń dat wizyt oraz orderdów dawcy."
   },
   "signIn": {
     "header": "Logowanie",

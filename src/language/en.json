@@ -19,7 +19,7 @@
     "doNotHaveAccount": "Don't have an account yet?",
     "register": "Register"
   },
-  "registerScreen": {
+  "register": {
     "header": "Registration",
     "email": "Email adress",
     "name": "Your name",

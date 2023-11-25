@@ -1,6 +1,12 @@
 import Button from "@components/Button";
 import React from "react";
-import { View, Text, Image, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
 import ChangeLanguageIcon from "@language/components/ChangeLanguageIcon";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
@@ -17,8 +23,12 @@ const Home = () => {
   const goToSignInScreen = () => {
     navigation.navigate(Routes.SignInScreen);
   };
+
+  const gotoRegister = () => {
+    navigation.navigate(Routes.RegisterScreen);
+  };
   return (
-    <SafeAreaView className="flex bg-white h-full">
+    <SafeAreaView className="flex bg-white h-full p-4">
       <View className="flex h-full px-8 pt-6 items-center justify-between">
         <View className="flex justify-center items-center gap-12">
           <Text
@@ -57,12 +67,14 @@ const Home = () => {
             >
               {t("home.doNotHaveAccount")}
             </Text>
-            <Text
-              className="text-2xl text-primary"
-              style={{ fontFamily: "BarlowCondensed-Medium" }}
-            >
-              {t("home.register")}
-            </Text>
+            <TouchableOpacity onPress={gotoRegister}>
+              <Text
+                className="text-2xl text-primary"
+                style={{ fontFamily: "BarlowCondensed-Medium" }}
+              >
+                {t("home.register")}
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
